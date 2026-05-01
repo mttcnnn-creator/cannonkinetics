@@ -7,10 +7,11 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
   background: #050505;
-  color: #ffffff;
+  color: #fff;
+  font-family: Arial, sans-serif;
   text-align: center;
+  position: relative;
 }
 
 .container {
@@ -27,8 +28,6 @@ body {
   width: 300px;
   max-width: 80%;
   margin-bottom: 30px;
-
-  /* Makes your dark logo show as white */
   filter: invert(1) brightness(2);
 }
 
@@ -50,15 +49,30 @@ h1 {
   display: inline-block;
   margin-top: 50px;
   padding: 16px 55px;
-  border: 2px solid #ffffff;
+  border: 2px solid #fff;
   text-decoration: none;
-  color: #ffffff;
+  color: #fff;
   font-size: 1.2em;
   letter-spacing: 5px;
   font-weight: bold;
 }
 
-/* Mobile adjustments */
+.company-link {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8em;
+  letter-spacing: 3px;
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.company-link:hover {
+  color: #ff0000;
+}
+
+/* Mobile */
 @media (max-width: 700px) {
   h1 {
     font-size: 2.2em;
@@ -87,7 +101,6 @@ h1 {
 
 <div class="container">
 
-  <!-- Your uploaded logo -->
   <img src="Cannon (9).png" class="logo">
 
   <h1>CANNON KINETICS</h1>
@@ -96,9 +109,11 @@ h1 {
     Expect Precision. Demand Control.
   </div>
 
- <a href="patience.html" class="button">COMING SOON</a>
+  <a href="patience.html" class="button">COMING SOON</a>
 
 </div>
+
+<a href="company.html" class="company-link">COMPANY</a>
 
 </body>
 </html>
