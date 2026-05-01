@@ -46,12 +46,14 @@ h1 {
   font-family: "Courier New", Courier, monospace;
 }
 
+/* DEFAULT = RED, HOVER = WHITE */
 .hover-red {
+  color: #ff0000;
   transition: color 0.2s ease;
 }
 
 .hover-red:hover {
-  color: #ff0000;
+  color: #ffffff;
 }
 
 .button {
@@ -79,12 +81,12 @@ h1 {
   white-space: nowrap;
 }
 
-/* BLINKING RED PROMPT (FIXED SPACING) */
+/* BLINKING RED PROMPT */
 .company-link::after {
   content: ">";
   color: #ff0000;
   font-weight: bold;
-  margin-left: 0px; /* no spacing */
+  margin-left: 0px;
   animation: blink 0.9s steps(1) infinite;
 }
 
