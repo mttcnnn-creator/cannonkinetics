@@ -79,12 +79,12 @@ h1 {
   white-space: nowrap;
 }
 
-/* BLINKING RED PROMPT */
+/* BLINKING RED PROMPT (FIXED SPACING) */
 .company-link::after {
-  content: " >";
+  content: ">";
   color: #ff0000;
   font-weight: bold;
-  margin-left: 6px;
+  margin-left: 0px; /* no spacing */
   animation: blink 0.9s steps(1) infinite;
 }
 
