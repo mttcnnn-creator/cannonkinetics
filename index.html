@@ -79,9 +79,10 @@ h1 {
   white-space: nowrap;
 }
 
+/* BLINKING RED PROMPT */
 .company-link::after {
-  content: "_";
-  color: #fff;
+  content: " >";
+  color: #ff0000;
   font-weight: bold;
   margin-left: 6px;
   animation: blink 0.9s steps(1) infinite;
