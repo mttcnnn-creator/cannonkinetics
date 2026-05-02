@@ -36,7 +36,12 @@ body {
 }
 
 .body-text {
-  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.body-text.show {
+  opacity: 1;
 }
 
 p {
@@ -97,60 +102,54 @@ p {
 <span id="brand" class="brand-line"></span>
 </p>
 
-<div class="body-text">
-<p id="body-paragraph"></p>
+<div id="body" class="body-text">
+
+<p>
+develops firearms components focused on cross-compatibility, modularity, and integrated control of mission-critical systems for modern weapon platforms. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.
+</p>
 
 <p class="tagline">
 <span id="expect-line"></span><br>
 <span id="demand-line"></span>
 </p>
+
 </div>
 
 </div>
 
 <script>
 const brandText = "CANNON KINETICS";
-const bodyText = "develops firearms components focused on cross-compatibility, modularity, and integrated control of mission-critical systems for modern weapon platforms. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.";
-
 const expectText = "EXPECT PRECISION.";
 const demandText = "DEMAND CONTROL.";
 
 const brandTarget = document.getElementById("brand");
-const bodyTarget = document.getElementById("body-paragraph");
+const body = document.getElementById("body");
 const expectTarget = document.getElementById("expect-line");
 const demandTarget = document.getElementById("demand-line");
 
 let brandIndex = 0;
-let bodyIndex = 0;
-
-const brandSpeed = 130;
-const bodySpeed = 15;
-const taglineSpeed = 130;
+const speed = 130;
 
 function typeBrand() {
   if (brandIndex <= brandText.length) {
     brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">█</span>';
     brandIndex++;
-    setTimeout(typeBrand, brandSpeed);
+    setTimeout(typeBrand, speed);
   } else {
     brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
-    setTimeout(typeBody, 250);
-  }
-}
 
-function typeBody() {
-  if (bodyIndex <= bodyText.length) {
-    bodyTarget.innerHTML = bodyText.substring(0, bodyIndex);
-    bodyIndex++;
-    setTimeout(typeBody, bodySpeed);
+    setTimeout(function() {
+      body.classList.add("show");
+    }, 300);
+
+    setTimeout(startExpect, 10000);
+    setTimeout(startDemand, 13000);
   }
 }
 
 function removeBrandCursor() {
   const cursor = document.getElementById("brand-cursor");
-  if (cursor) {
-    cursor.remove();
-  }
+  if (cursor) cursor.remove();
 }
 
 function startExpect() {
@@ -163,7 +162,7 @@ function startExpect() {
       const current = expectText.substring(0, i).replace("EXPECT", '<span class="red">EXPECT</span>');
       expectTarget.innerHTML = current + '<span class="cursor">█</span>';
       i++;
-      setTimeout(type, taglineSpeed);
+      setTimeout(type, speed);
     } else {
       expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
     }
@@ -180,7 +179,7 @@ function startDemand() {
       const current = demandText.substring(0, i).replace("DEMAND", '<span class="red">DEMAND</span>');
       demandTarget.innerHTML = current + '<span class="cursor">█</span>';
       i++;
-      setTimeout(type, taglineSpeed);
+      setTimeout(type, speed);
     } else {
       demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>');
     }
@@ -189,12 +188,7 @@ function startDemand() {
   type();
 }
 
-window.onload = function() {
-  typeBrand();
-
-  setTimeout(startExpect, 10000);
-  setTimeout(startDemand, 13000);
-};
+window.onload = typeBrand;
 </script>
 
 </body>
