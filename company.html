@@ -58,7 +58,9 @@ p {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Mobile */
@@ -95,6 +97,9 @@ p {
 <span id="brand" class="brand-line"></span>
 </p>
 
+<div class="body-text">
+<p id="body-paragraph"></p>
+
 <p class="tagline">
 <span id="expect-line"></span><br>
 <span id="demand-line"></span>
@@ -105,10 +110,10 @@ p {
 
 <script>
 const brandText = "CANNON KINETICS";
-const bodyText = "Develops firearms components focused on cross-compatibility, modularity, and integrated control of mission-critical systems for modern weapon platforms. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.";
+const bodyText = "develops firearms components focused on cross-compatibility, modularity, and integrated control of mission-critical systems for modern weapon platforms. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.";
 
-const expectText = "EXPECT Precision.";
-const demandText = "DEMAND Control.";
+const expectText = "EXPECT PRECISION.";
+const demandText = "DEMAND CONTROL.";
 
 const brandTarget = document.getElementById("brand");
 const bodyTarget = document.getElementById("body-paragraph");
@@ -119,9 +124,9 @@ let brandIndex = 0;
 let bodyIndex = 0;
 
 const brandSpeed = 130;
-const bodySpeed = 15; // fast typing (faster than reading)
+const bodySpeed = 15;
+const taglineSpeed = 130;
 
-/* TYPE BRAND */
 function typeBrand() {
   if (brandIndex <= brandText.length) {
     brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">█</span>';
@@ -129,11 +134,10 @@ function typeBrand() {
     setTimeout(typeBrand, brandSpeed);
   } else {
     brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
-    setTimeout(typeBody, 200);
+    setTimeout(typeBody, 250);
   }
 }
 
-/* TYPE BODY FAST */
 function typeBody() {
   if (bodyIndex <= bodyText.length) {
     bodyTarget.innerHTML = bodyText.substring(0, bodyIndex);
@@ -142,51 +146,52 @@ function typeBody() {
   }
 }
 
-/* REMOVE BRAND CURSOR WHEN TAGLINE STARTS */
 function removeBrandCursor() {
   const cursor = document.getElementById("brand-cursor");
-  if (cursor) cursor.remove();
+  if (cursor) {
+    cursor.remove();
+  }
 }
 
-/* EXPECT */
 function startExpect() {
   removeBrandCursor();
 
   let i = 0;
+
   function type() {
     if (i <= expectText.length) {
-      const txt = expectText.substring(0, i)
-        .replace("EXPECT", '<span class="red">EXPECT</span>');
-      expectTarget.innerHTML = txt + '<span class="cursor">█</span>';
+      const current = expectText.substring(0, i).replace("EXPECT", '<span class="red">EXPECT</span>');
+      expectTarget.innerHTML = current + '<span class="cursor">█</span>';
       i++;
-      setTimeout(type, 130);
+      setTimeout(type, taglineSpeed);
     } else {
       expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
     }
   }
+
   type();
 }
 
-/* DEMAND */
 function startDemand() {
   let i = 0;
+
   function type() {
     if (i <= demandText.length) {
-      const txt = demandText.substring(0, i)
-        .replace("DEMAND", '<span class="red">DEMAND</span>');
-      demandTarget.innerHTML = txt + '<span class="cursor">█</span>';
+      const current = demandText.substring(0, i).replace("DEMAND", '<span class="red">DEMAND</span>');
+      demandTarget.innerHTML = current + '<span class="cursor">█</span>';
       i++;
-      setTimeout(type, 130);
+      setTimeout(type, taglineSpeed);
     } else {
       demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>');
     }
   }
+
   type();
 }
 
-/* TIMING (UNCHANGED) */
-window.onload = () => {
+window.onload = function() {
   typeBrand();
+
   setTimeout(startExpect, 10000);
   setTimeout(startDemand, 13000);
 };
