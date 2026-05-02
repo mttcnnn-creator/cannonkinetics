@@ -9,7 +9,7 @@ body {
 margin: 0;
 background: #050505;
 color: #fff;
-font-family: Arial, sans-serif;
+font-family: "Courier New", Courier, monospace; /* 🔥 CHANGED */
 text-align: center;
 position: relative;
 }
@@ -31,11 +31,13 @@ margin-bottom: 30px;
 filter: invert(1) brightness(2);
 }
 
+/* 🔥 KEEP TITLE FONT ORIGINAL */
 h1 {
 margin: 0;
 font-size: 3.8em;
 letter-spacing: 12px;
 font-weight: 800;
+font-family: Arial, sans-serif;
 }
 
 .tagline {
@@ -43,18 +45,16 @@ margin-top: 25px;
 font-size: 1.4em;
 letter-spacing: 4px;
 color: #b8b8b8;
-font-family: "Lucida Console", Monaco, monospace;
-min-height: 1.6em;
 }
 
-.red {
+/* EXPECT / DEMAND */
+.hover-red {
 color: #ff0000;
+transition: color 0.2s ease;
 }
 
-.cursor {
-color: #ff0000;
-font-weight: bold;
-animation: blink 0.8s steps(1) infinite;
+.hover-red:hover {
+color: #ffffff;
 }
 
 .button {
@@ -69,6 +69,7 @@ letter-spacing: 5px;
 font-weight: bold;
 }
 
+/* COMPANY LINK */
 .company-link {
 position: absolute;
 bottom: 25px;
@@ -82,12 +83,16 @@ text-decoration: none;
 white-space: nowrap;
 }
 
+/* 🔥 WHITE BLOCK CURSOR */
 .company-link::after {
-content: ">";
-color: #ff0000;
-font-weight: bold;
+content: "";
+display: inline-block;
+width: 0.6em;
+height: 1em;
+background: #ffffff;
+vertical-align: -0.15em;
 margin-left: 0;
-animation: blink 0.9s steps(1) infinite;
+animation: blink 0.8s steps(1) infinite;
 }
 
 .company-link:hover {
@@ -113,8 +118,8 @@ line-height: 1.2;
 }
 
 .tagline {
-font-size: 0.85em;
-letter-spacing: 1px;
+font-size: 0.95em;
+letter-spacing: 1.5px;
 line-height: 1.5;
 }
 
@@ -147,7 +152,10 @@ bottom: 24px;
 
 <h1>CANNON KINETICS</h1>
 
-<div class="tagline" id="tagline"></div>
+<div class="tagline">
+<span class="hover-red">EXPECT</span> Precision.
+<span class="hover-red">DEMAND</span> Control.
+</div>
 
 <a href="patience.html" class="button">COMING SOON</a>
 
@@ -155,30 +163,6 @@ bottom: 24px;
 
 <a href="company.html" class="company-link">COMPANY</a>
 
-<script>
-const text = "EXPECT Precision. DEMAND Control.";
-const tagline = document.getElementById("tagline");
-let i = 0;
-
-function formatText(value) {
-return value
-.replace("EXPECT", '<span class="red">EXPECT</span>')
-.replace("DEMAND", '<span class="red">DEMAND</span>');
-}
-
-function typeWriter() {
-if (i <= text.length) {
-const currentText = text.substring(0, i);
-tagline.innerHTML = formatText(currentText) + '<span class="cursor">|</span>';
-i++;
-setTimeout(typeWriter, 110);
-} else {
-tagline.innerHTML = formatText(text);
-}
-}
-
-window.onload = typeWriter;
-</script>
-
 </body>
 </html>
+
