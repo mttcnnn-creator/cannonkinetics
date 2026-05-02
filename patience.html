@@ -6,55 +6,89 @@
 
 <style>
 body {
-  margin: 0;
-  background: #000;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  text-align: center;
-  padding: 20px;
-  box-sizing: border-box;
+margin: 0;
+background: #000;
+color: #fff;
+font-family: Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+text-align: center;
+padding: 20px;
+box-sizing: border-box;
 }
 
 .container {
-  max-width: 600px;
-  width: 100%;
+max-width: 600px;
+width: 100%;
 }
 
 h1 {
-  font-size: 2.4em;
-  letter-spacing: 4px;
-  margin-bottom: 20px;
-  color: #ff0000;
+font-size: 2.4em;
+letter-spacing: 4px;
+margin-bottom: 20px;
+color: #ff0000;
+opacity: 0;
+transform: scale(2.4) rotate(-18deg);
+animation: stampIn 0.28s cubic-bezier(.2, 1.4, .4, 1) forwards;
 }
 
 .email-link {
-  font-size: 1.3em;
-  letter-spacing: 2px;
-  color: #888;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 5px;
+font-size: 1.3em;
+letter-spacing: 2px;
+color: #fff;
+text-decoration: none;
+display: inline-block;
+margin-top: 5px;
+font-family: "Courier New", Courier, monospace;
+min-height: 1.5em;
 }
 
 .email-link:hover {
-  color: #fff;
+color: #ff0000;
+}
+
+.cursor {
+color: #ff0000;
+font-weight: bold;
+animation: blink 0.8s steps(1) infinite;
+}
+
+@keyframes stampIn {
+0% {
+opacity: 0;
+transform: scale(2.4) rotate(-18deg);
+}
+
+70% {
+opacity: 1;
+transform: scale(0.92) rotate(4deg);
+}
+
+100% {
+opacity: 1;
+transform: scale(1) rotate(-3deg);
+}
+}
+
+@keyframes blink {
+50% {
+opacity: 0;
+}
 }
 
 /* MOBILE OPTIMIZATION */
 @media (max-width: 700px) {
-  h1 {
-    font-size: 1.9em;
-    letter-spacing: 2px;
-  }
+h1 {
+font-size: 1.9em;
+letter-spacing: 2px;
+}
 
-  .email-link {
-    font-size: 1.05em;
-    letter-spacing: 1px;
-  }
+.email-link {
+font-size: 1.05em;
+letter-spacing: 1px;
+}
 }
 </style>
 </head>
@@ -62,12 +96,32 @@ h1 {
 <body>
 
 <div class="container">
-  <h1>PRE-ORDER</h1>
+<h1>PRE-ORDER</h1>
 
-  <a class="email-link" href="mailto:control@cannonkinetics.com">
-    control@cannonkinetics.com
-  </a>
+<a class="email-link" href="mailto:control@cannonkinetics.com" id="email-link"></a>
 </div>
+
+<script>
+const emailText = "control@cannonkinetics.com";
+const emailLink = document.getElementById("email-link");
+let emailIndex = 0;
+
+const emailSpeed = 75;
+
+function typeEmail() {
+if (emailIndex <= emailText.length) {
+emailLink.innerHTML = emailText.substring(0, emailIndex) + '<span class="cursor">█</span>';
+emailIndex++;
+setTimeout(typeEmail, emailSpeed);
+} else {
+emailLink.innerHTML = emailText + '<span class="cursor">█</span>';
+}
+}
+
+window.onload = function() {
+setTimeout(typeEmail, 450);
+};
+</script>
 
 </body>
 </html>
