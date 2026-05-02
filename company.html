@@ -127,7 +127,7 @@ const demandTarget = document.getElementById("demand-line");
 
 const speed = 130;
 
-function typeText(target, text, callback) {
+function typeText(target, text, callback, keepCursor = false) {
 let i = 0;
 
 function type() {
@@ -149,6 +149,8 @@ if (text.startsWith("EXPECT")) {
 target.innerHTML = text.replace("EXPECT", '<span class="red">EXPECT</span>');
 } else if (text.startsWith("DEMAND")) {
 target.innerHTML = text.replace("DEMAND", '<span class="red">DEMAND</span>');
+} else if (keepCursor) {
+target.innerHTML = text + '<span class="cursor">|</span>';
 } else {
 target.innerHTML = text;
 }
@@ -163,12 +165,11 @@ type();
 window.onload = function() {
 typeText(brandTarget, brandText, function() {
 
-// 🔥 Increased delay before body appears (was 300ms → now 1300ms)
+// Reduced delay by 1/2 second: 1300ms → 800ms
 setTimeout(function() {
 
 body.style.opacity = 1;
 
-// 🔥 Timers now start AFTER body appears
 setTimeout(function() {
 typeText(expectTarget, expectText);
 }, 10000);
@@ -177,9 +178,9 @@ setTimeout(function() {
 typeText(demandTarget, demandText);
 }, 13000);
 
-}, 1300);
+}, 800);
 
-});
+}, true);
 };
 </script>
 
