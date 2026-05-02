@@ -6,139 +6,165 @@
 
 <style>
 body {
-margin: 0;
-background: #050505;
-color: #fff;
-font-family: "Courier New", Courier, monospace;
-text-align: center;
-position: relative;
+  margin: 0;
+  background: #050505;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .container {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 40px 20px 80px;
-box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px 80px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 5;
 }
 
 .logo {
-width: 300px;
-max-width: 80%;
-margin-bottom: 30px;
-filter: invert(1) brightness(2);
+  width: 300px;
+  max-width: 80%;
+  margin-bottom: 30px;
+  filter: invert(1) brightness(2);
 }
 
 h1 {
-margin: 0;
-font-size: 3.8em;
-letter-spacing: 12px;
-font-weight: 800;
-font-family: Arial, sans-serif;
+  margin: 0;
+  font-size: 3.8em;
+  letter-spacing: 12px;
+  font-weight: 800;
 }
 
 .tagline {
-margin-top: 25px;
-font-size: 1.4em;
-letter-spacing: 4px;
-color: #b8b8b8;
-min-height: 1.6em;
+  margin-top: 25px;
+  font-size: 1.4em;
+  letter-spacing: 4px;
+  color: #b8b8b8;
+  font-family: "Courier New", Courier, monospace;
+  min-height: 1.6em;
 }
 
 .red {
-color: #ff0000;
+  color: #ff0000;
 }
 
 .cursor {
-display: inline-block;
-width: 0.6em;
-height: 1em;
-background: #ff0000;
-vertical-align: -0.15em;
-animation: blink 0.8s steps(1) infinite;
-}
-
-.company-cursor {
-display: inline-block;
-width: 0.6em;
-height: 1em;
-background: #ffffff;
-vertical-align: -0.15em;
-animation: blink 0.8s steps(1) infinite;
+  color: #ff0000;
+  font-weight: bold;
+  animation: blink 0.8s steps(1) infinite;
 }
 
 .button {
-display: inline-block;
-margin-top: 50px;
-padding: 16px 55px;
-border: 2px solid #fff;
-text-decoration: none;
-color: #fff;
-font-size: 1.2em;
-letter-spacing: 5px;
-font-weight: bold;
+  display: inline-block;
+  margin-top: 50px;
+  padding: 16px 55px;
+  border: 2px solid #fff;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2em;
+  letter-spacing: 5px;
+  font-weight: bold;
 }
 
 .company-link {
-position: absolute;
-bottom: 25px;
-left: 50%;
-transform: translateX(-50%);
-font-size: 1em;
-letter-spacing: 5px;
-font-weight: bold;
-color: #cc0000;
-text-decoration: none;
-white-space: nowrap;
-min-height: 1.2em;
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1em;
+  letter-spacing: 5px;
+  font-weight: bold;
+  color: #cc0000;
+  text-decoration: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.company-link::after {
+  content: ">";
+  color: #ff0000;
+  font-weight: bold;
+  margin-left: 0;
+  animation: blink 0.9s steps(1) infinite;
 }
 
 .company-link:hover {
-color: #ff0000;
+  color: #ff0000;
+}
+
+.bullet-hole {
+  position: absolute;
+  width: 78px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+  transform: scale(0.4) rotate(var(--rotation));
+  animation: impact 0.18s ease-out forwards;
+}
+
+@keyframes impact {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(var(--rotation));
+  }
+  100% {
+    opacity: 0.72;
+    transform: scale(1) rotate(var(--rotation));
+  }
 }
 
 @keyframes blink {
-50% {
-opacity: 0;
-}
+  50% {
+    opacity: 0;
+  }
 }
 
+/* Mobile */
 @media (max-width: 700px) {
-.container {
-padding: 30px 16px 90px;
-}
+  .container {
+    padding: 30px 16px 90px;
+  }
 
-h1 {
-font-size: 2em;
-letter-spacing: 5px;
-line-height: 1.2;
-}
+  h1 {
+    font-size: 2em;
+    letter-spacing: 5px;
+    line-height: 1.2;
+  }
 
-.tagline {
-font-size: 0.95em;
-letter-spacing: 1.5px;
-line-height: 1.5;
-}
+  .tagline {
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
 
-.logo {
-width: 210px;
-margin-bottom: 25px;
-}
+  .logo {
+    width: 210px;
+    margin-bottom: 25px;
+  }
 
-.button {
-font-size: 0.95em;
-padding: 12px 28px;
-letter-spacing: 3px;
-margin-top: 42px;
-}
+  .button {
+    font-size: 0.95em;
+    padding: 12px 28px;
+    letter-spacing: 3px;
+    margin-top: 42px;
+  }
 
-.company-link {
-font-size: 0.9em;
-letter-spacing: 3px;
-bottom: 24px;
-}
+  .company-link {
+    font-size: 0.9em;
+    letter-spacing: 3px;
+    bottom: 24px;
+  }
+
+  .bullet-hole {
+    width: 52px;
+  }
 }
 </style>
 </head>
@@ -147,63 +173,77 @@ bottom: 24px;
 
 <div class="container">
 
-<img src="Cannon (9).png" class="logo">
+  <img src="Cannon (9).png" class="logo">
 
-<h1>CANNON KINETICS</h1>
+  <h1>CANNON KINETICS</h1>
 
-<div class="tagline" id="tagline"></div>
+  <div class="tagline" id="tagline"></div>
 
-<a href="patience.html" class="button">COMING SOON</a>
+  <a href="patience.html" class="button">COMING SOON</a>
 
 </div>
 
-<a href="company.html" class="company-link" id="company-link"></a>
+<a href="company.html" class="company-link">COMPANY</a>
 
 <script>
 const taglineText = "EXPECT Precision. DEMAND Control.";
-const companyText = "COMPANY";
+const tagline = document.getElementById("tagline");
+let i = 0;
 
-const taglineTarget = document.getElementById("tagline");
-const companyTarget = document.getElementById("company-link");
-
-const speed = 130;
-
-let taglineIndex = 0;
-let companyIndex = 0;
+const typeSpeed = 130;
+const cyclicRateDelay = 100;
+const bulletCount = 7;
 
 function formatTagline(value) {
-return value
-.replace("EXPECT", '<span class="red">EXPECT</span>')
-.replace("DEMAND", '<span class="red">DEMAND</span>');
+  return value
+    .replace("EXPECT", '<span class="red">EXPECT</span>')
+    .replace("DEMAND", '<span class="red">DEMAND</span>');
 }
 
-function typeTagline() {
-if (taglineIndex <= taglineText.length) {
-const currentText = taglineText.substring(0, taglineIndex);
-taglineTarget.innerHTML = formatTagline(currentText) + '<span class="cursor"></span>';
-taglineIndex++;
-setTimeout(typeTagline, speed);
-} else {
-taglineTarget.innerHTML = formatTagline(taglineText);
-setTimeout(typeCompany, 500);
-}
-}
-
-function typeCompany() {
-if (companyIndex <= companyText.length) {
-companyTarget.innerHTML = companyText.substring(0, companyIndex) + '<span class="company-cursor"></span>';
-companyIndex++;
-setTimeout(typeCompany, speed);
-} else {
-companyTarget.innerHTML = companyText + '<span class="company-cursor"></span>';
-}
+function typeWriter() {
+  if (i <= taglineText.length) {
+    const currentText = taglineText.substring(0, i);
+    tagline.innerHTML = formatTagline(currentText) + '<span class="cursor">|</span>';
+    i++;
+    setTimeout(typeWriter, typeSpeed);
+  } else {
+    tagline.innerHTML = formatTagline(taglineText);
+    setTimeout(startBulletBurst, 500);
+  }
 }
 
-window.onload = typeTagline;
+function startBulletBurst() {
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  const startX = screenWidth * 0.12;
+  const endX = screenWidth * 0.88;
+  const centerY = screenHeight * 0.34;
+
+  for (let n = 0; n < bulletCount; n++) {
+    setTimeout(() => {
+      const bullet = document.createElement("img");
+      bullet.src = "bullet-hole.png";
+      bullet.className = "bullet-hole";
+
+      const progress = n / (bulletCount - 1);
+      const x = startX + (endX - startX) * progress;
+      const randomY = centerY + (Math.random() * 180 - 90);
+      const rotation = Math.floor(Math.random() * 90 - 45) + "deg";
+
+      bullet.style.left = x + "px";
+      bullet.style.top = randomY + "px";
+      bullet.style.setProperty("--rotation", rotation);
+
+      document.body.appendChild(bullet);
+    }, n * cyclicRateDelay);
+  }
+}
+
+window.onload = typeWriter;
 </script>
 
 </body>
 </html>
-
 
 
