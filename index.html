@@ -6,149 +6,135 @@
 
 <style>
 body {
-  margin: 0;
-  background: #050505;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  position: relative;
+margin: 0;
+background: #050505;
+color: #fff;
+font-family: Arial, sans-serif;
+text-align: center;
+position: relative;
 }
 
 .container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px 80px;
-  box-sizing: border-box;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 40px 20px 80px;
+box-sizing: border-box;
 }
 
 .logo {
-  width: 300px;
-  max-width: 80%;
-  margin-bottom: 30px;
-  filter: invert(1) brightness(2);
+width: 300px;
+max-width: 80%;
+margin-bottom: 30px;
+filter: invert(1) brightness(2);
 }
 
 h1 {
-  margin: 0;
-  font-size: 3.8em;
-  letter-spacing: 12px;
-  font-weight: 800;
+margin: 0;
+font-size: 3.8em;
+letter-spacing: 12px;
+font-weight: 800;
 }
 
 .tagline {
-  margin-top: 25px;
-  font-size: 1.4em;
-  letter-spacing: 4px;
-  color: #b8b8b8;
-  font-family: "Lucida Console", Monaco, monospace;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #ff0000;
-  width: 0;
-  animation: typing 2.6s steps(35, end) forwards, cursor-stop 0.1s forwards 2.7s;
+margin-top: 25px;
+font-size: 1.4em;
+letter-spacing: 4px;
+color: #b8b8b8;
+font-family: "Lucida Console", Monaco, monospace;
+min-height: 1.6em;
 }
 
 .red {
-  color: #ff0000;
+color: #ff0000;
+}
+
+.cursor {
+color: #ff0000;
+font-weight: bold;
+animation: blink 0.8s steps(1) infinite;
 }
 
 .button {
-  display: inline-block;
-  margin-top: 50px;
-  padding: 16px 55px;
-  border: 2px solid #fff;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.2em;
-  letter-spacing: 5px;
-  font-weight: bold;
+display: inline-block;
+margin-top: 50px;
+padding: 16px 55px;
+border: 2px solid #fff;
+text-decoration: none;
+color: #fff;
+font-size: 1.2em;
+letter-spacing: 5px;
+font-weight: bold;
 }
 
 .company-link {
-  position: absolute;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1em;
-  letter-spacing: 5px;
-  font-weight: bold;
-  color: #cc0000;
-  text-decoration: none;
-  white-space: nowrap;
+position: absolute;
+bottom: 25px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 1em;
+letter-spacing: 5px;
+font-weight: bold;
+color: #cc0000;
+text-decoration: none;
+white-space: nowrap;
 }
 
 .company-link::after {
-  content: ">";
-  color: #ff0000;
-  font-weight: bold;
-  margin-left: 0;
-  animation: blink 0.9s steps(1) infinite;
+content: ">";
+color: #ff0000;
+font-weight: bold;
+margin-left: 0;
+animation: blink 0.9s steps(1) infinite;
 }
 
 .company-link:hover {
-  color: #ff0000;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 35ch;
-  }
-}
-
-@keyframes cursor-stop {
-  to {
-    border-right: none;
-  }
+color: #ff0000;
 }
 
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+50% {
+opacity: 0;
+}
 }
 
 /* Mobile */
 @media (max-width: 700px) {
-  .container {
-    padding: 30px 16px 90px;
-  }
+.container {
+padding: 30px 16px 90px;
+}
 
-  h1 {
-    font-size: 2em;
-    letter-spacing: 5px;
-    line-height: 1.2;
-  }
+h1 {
+font-size: 2em;
+letter-spacing: 5px;
+line-height: 1.2;
+}
 
-  .tagline {
-    font-size: 0.85em;
-    letter-spacing: 1px;
-    line-height: 1.5;
-    animation: typing 2.6s steps(35, end) forwards, cursor-stop 0.1s forwards 2.7s;
-  }
+.tagline {
+font-size: 0.85em;
+letter-spacing: 1px;
+line-height: 1.5;
+}
 
-  .logo {
-    width: 210px;
-    margin-bottom: 25px;
-  }
+.logo {
+width: 210px;
+margin-bottom: 25px;
+}
 
-  .button {
-    font-size: 0.95em;
-    padding: 12px 28px;
-    letter-spacing: 3px;
-    margin-top: 42px;
-  }
+.button {
+font-size: 0.95em;
+padding: 12px 28px;
+letter-spacing: 3px;
+margin-top: 42px;
+}
 
-  .company-link {
-    font-size: 0.9em;
-    letter-spacing: 3px;
-    bottom: 24px;
-  }
+.company-link {
+font-size: 0.9em;
+letter-spacing: 3px;
+bottom: 24px;
+}
 }
 </style>
 </head>
@@ -157,19 +143,42 @@ h1 {
 
 <div class="container">
 
-  <img src="Cannon (9).png" class="logo">
+<img src="Cannon (9).png" class="logo">
 
-  <h1>CANNON KINETICS</h1>
+<h1>CANNON KINETICS</h1>
 
-  <div class="tagline">
-    <span class="red">EXPECT</span> Precision. <span class="red">DEMAND</span> Control.
-  </div>
+<div class="tagline" id="tagline"></div>
 
-  <a href="patience.html" class="button">COMING SOON</a>
+<a href="patience.html" class="button">COMING SOON</a>
 
 </div>
 
 <a href="company.html" class="company-link">COMPANY</a>
+
+<script>
+const text = "EXPECT Precision. DEMAND Control.";
+const tagline = document.getElementById("tagline");
+let i = 0;
+
+function formatText(value) {
+return value
+.replace("EXPECT", '<span class="red">EXPECT</span>')
+.replace("DEMAND", '<span class="red">DEMAND</span>');
+}
+
+function typeWriter() {
+if (i <= text.length) {
+const currentText = text.substring(0, i);
+tagline.innerHTML = formatText(currentText) + '<span class="cursor">|</span>';
+i++;
+setTimeout(typeWriter, 70);
+} else {
+tagline.innerHTML = formatText(text);
+}
+}
+
+window.onload = typeWriter;
+</script>
 
 </body>
 </html>
