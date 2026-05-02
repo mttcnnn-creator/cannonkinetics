@@ -24,7 +24,7 @@ body {
   padding: 40px 20px 80px;
   box-sizing: border-box;
   position: relative;
-  z-index: 5;
+  z-index: 10;
 }
 
 .logo {
@@ -78,7 +78,7 @@ h1 {
 }
 
 .company-link {
-  position: absolute;
+  position: fixed;
   bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
@@ -88,11 +88,11 @@ h1 {
   color: #cc0000;
   text-decoration: none;
   white-space: nowrap;
-  z-index: 10;
+  z-index: 100;
+  font-family: Arial, sans-serif;
 }
 
-.company-link::after {
-  content: "█";
+.company-cursor {
   color: #ffffff;
   font-weight: bold;
   margin-left: 2px;
@@ -108,8 +108,7 @@ h1 {
   width: 78px;
   opacity: 0;
   pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: screen;
+  z-index: 999999;
   transform: translate(-50%, -50%) scale(0.4) rotate(var(--rotation));
   animation: impact 0.18s ease-out forwards;
 }
@@ -121,7 +120,7 @@ h1 {
   }
 
   100% {
-    opacity: 0.82;
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
   }
 }
@@ -169,7 +168,8 @@ h1 {
   }
 
   .bullet-hole {
-    width: 52px;
+    width: 58px;
+    z-index: 999999;
   }
 }
 </style>
@@ -189,18 +189,23 @@ h1 {
 
 </div>
 
-<a href="company.html" class="company-link">COMPANY</a>
+<a href="company.html" class="company-link" id="company-link"></a>
 
 <script>
 const taglineText = "EXPECT Precision. DEMAND Control.";
+const companyText = "COMPANY";
+
 const tagline = document.getElementById("tagline");
-let i = 0;
+const companyLink = document.getElementById("company-link");
+
+let taglineIndex = 0;
+let companyIndex = 0;
 
 const typeSpeed = 130;
+const companyTypeSpeed = 130;
 
-/* 400 rounds per minute = 150ms between impacts */
+/* 400 RPM = 150ms between impacts */
 const cyclicRateDelay = 150;
-
 const bulletCount = 7;
 
 function formatTagline(value) {
@@ -209,17 +214,28 @@ function formatTagline(value) {
     .replace("DEMAND", '<span class="red">DEMAND</span>');
 }
 
-function typeWriter() {
-  if (i <= taglineText.length) {
-    const currentText = taglineText.substring(0, i);
+function typeTagline() {
+  if (taglineIndex <= taglineText.length) {
+    const currentText = taglineText.substring(0, taglineIndex);
     tagline.innerHTML = formatTagline(currentText) + '<span class="cursor">|</span>';
-    i++;
-    setTimeout(typeWriter, typeSpeed);
+    taglineIndex++;
+    setTimeout(typeTagline, typeSpeed);
   } else {
     tagline.innerHTML = formatTagline(taglineText);
 
-    /* Starts 1 second after tagline finishes */
+    setTimeout(typeCompany, 400);
     setTimeout(startBulletBurst, 1000);
+  }
+}
+
+function typeCompany() {
+  if (companyIndex <= companyText.length) {
+    const currentCompany = companyText.substring(0, companyIndex);
+    companyLink.innerHTML = currentCompany + '<span class="company-cursor">█</span>';
+    companyIndex++;
+    setTimeout(typeCompany, companyTypeSpeed);
+  } else {
+    companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
   }
 }
 
@@ -251,7 +267,7 @@ function startBulletBurst() {
   }
 }
 
-window.onload = typeWriter;
+window.onload = typeTagline;
 </script>
 
 </body>
