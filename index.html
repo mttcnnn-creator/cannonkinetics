@@ -60,6 +60,15 @@ vertical-align: -0.15em;
 animation: blink 0.8s steps(1) infinite;
 }
 
+.company-cursor {
+display: inline-block;
+width: 0.6em;
+height: 1em;
+background: #ffffff;
+vertical-align: -0.15em;
+animation: blink 0.8s steps(1) infinite;
+}
+
 .button {
 display: inline-block;
 margin-top: 50px;
@@ -83,17 +92,7 @@ font-weight: bold;
 color: #cc0000;
 text-decoration: none;
 white-space: nowrap;
-}
-
-.company-link::after {
-content: "";
-display: inline-block;
-width: 0.6em;
-height: 1em;
-background: #ffffff;
-vertical-align: -0.15em;
-margin-left: 0;
-animation: blink 0.8s steps(1) infinite;
+min-height: 1.2em;
 }
 
 .company-link:hover {
@@ -158,36 +157,53 @@ bottom: 24px;
 
 </div>
 
-<a href="company.html" class="company-link">COMPANY</a>
+<a href="company.html" class="company-link" id="company-link"></a>
 
 <script>
 const taglineText = "EXPECT Precision. DEMAND Control.";
+const companyText = "COMPANY";
+
 const taglineTarget = document.getElementById("tagline");
+const companyTarget = document.getElementById("company-link");
+
 const speed = 130;
 
-let i = 0;
+let taglineIndex = 0;
+let companyIndex = 0;
 
-function formatText(value) {
+function formatTagline(value) {
 return value
 .replace("EXPECT", '<span class="red">EXPECT</span>')
 .replace("DEMAND", '<span class="red">DEMAND</span>');
 }
 
-function typeWriter() {
-if (i <= taglineText.length) {
-const currentText = taglineText.substring(0, i);
-taglineTarget.innerHTML = formatText(currentText) + '<span class="cursor"></span>';
-i++;
-setTimeout(typeWriter, speed);
+function typeTagline() {
+if (taglineIndex <= taglineText.length) {
+const currentText = taglineText.substring(0, taglineIndex);
+taglineTarget.innerHTML = formatTagline(currentText) + '<span class="cursor"></span>';
+taglineIndex++;
+setTimeout(typeTagline, speed);
 } else {
-taglineTarget.innerHTML = formatText(taglineText);
+taglineTarget.innerHTML = formatTagline(taglineText);
+setTimeout(typeCompany, 500);
 }
 }
 
-window.onload = typeWriter;
+function typeCompany() {
+if (companyIndex <= companyText.length) {
+companyTarget.innerHTML = companyText.substring(0, companyIndex) + '<span class="company-cursor"></span>';
+companyIndex++;
+setTimeout(typeCompany, speed);
+} else {
+companyTarget.innerHTML = companyText + '<span class="company-cursor"></span>';
+}
+}
+
+window.onload = typeTagline;
 </script>
 
 </body>
 </html>
+
 
 
