@@ -1,192 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cannon Kinetics | Company</title>
+<title>Company | Cannon Kinetics</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #fff;
-      font-family: "Courier New", Courier, monospace;
-      overflow-x: hidden;
-    }
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
 
-    body {
-      min-height: 100vh;
-    }
+.container {
+  width: 100%;
+  max-width: 800px;
+  padding: 50px 24px;
+  line-height: 1.7;
+  box-sizing: border-box;
+}
 
-    .page {
-      width: 100%;
-      min-height: 100vh;
-      padding: 42px 48px;
-    }
+.brand-line {
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #fff;
+}
 
-    .nav {
-      display: flex;
-      justify-content: flex-end;
-      gap: 42px;
-      margin-bottom: 70px;
-      font-size: 18px;
-      letter-spacing: 2px;
-    }
+.cursor {
+  color: #ff0000;
+  font-weight: bold;
+  animation: blink 0.8s steps(1) infinite;
+}
 
-    .nav a {
-      color: #fff;
-      text-decoration: none;
-    }
+.body-text {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
 
-    .nav a:hover {
-      color: #ff0000;
-    }
+.body-text.show {
+  opacity: 1;
+}
 
-    .brand-line {
-      font-size: clamp(34px, 7vw, 72px);
-      font-weight: 900;
-      color: #ff0000;
-      letter-spacing: 3px;
-      line-height: 1.1;
-      margin-bottom: 60px;
-      min-height: 80px;
-      white-space: nowrap;
-    }
+p {
+  margin-bottom: 22px;
+  color: #ccc;
+  font-size: 1rem;
+}
 
-    .paragraph {
-      max-width: 980px;
-      font-size: clamp(20px, 3.2vw, 34px);
-      line-height: 1.55;
-      letter-spacing: 1px;
-      opacity: 0;
-      transition: opacity 2s ease;
-    }
+.tagline {
+  margin-top: 45px;
+  letter-spacing: 3px;
+  color: #fff;
+  line-height: 1.5;
+  min-height: 3em;
+}
 
-    .paragraph.visible {
-      opacity: 1;
-    }
+.red {
+  color: #ff0000;
+}
 
-    .slogan {
-      margin-top: 46px;
-      font-size: clamp(22px, 3.8vw, 40px);
-      letter-spacing: 2px;
-      color: #fff;
-      min-height: 60px;
-      white-space: nowrap;
-    }
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
 
-    .cursor {
-      display: inline-block;
-      color: #ff0000;
-      animation: blink 0.8s infinite;
-      font-weight: normal;
-    }
+/* Mobile */
+@media (max-width: 700px) {
+  body {
+    align-items: flex-start;
+  }
 
-    @keyframes blink {
-      0%, 45% { opacity: 1; }
-      46%, 100% { opacity: 0; }
-    }
+  .container {
+    max-width: 100%;
+    padding: 90px 22px 60px;
+    line-height: 1.55;
+  }
 
-    @media (max-width: 768px) {
-      .page {
-        padding: 38px 22px;
-      }
+  .brand-line {
+    font-size: 1em;
+    letter-spacing: 1.5px;
+  }
 
-      .nav {
-        justify-content: center;
-        gap: 26px;
-        margin-bottom: 54px;
-        font-size: 16px;
-        letter-spacing: 1.5px;
-      }
+  p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
 
-      .brand-line {
-        font-size: clamp(32px, 10vw, 48px);
-        white-space: normal;
-        margin-bottom: 48px;
-      }
-
-      .paragraph {
-        font-size: clamp(19px, 5.5vw, 28px);
-        line-height: 1.55;
-        letter-spacing: 0.5px;
-      }
-
-      .slogan {
-        font-size: clamp(22px, 6vw, 32px);
-        white-space: normal;
-      }
-    }
-  </style>
+  .tagline {
+    letter-spacing: 1.5px;
+    font-size: 0.9em;
+    margin-top: 34px;
+    line-height: 1.45;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="page">
-    <nav class="nav">
-      <a href="index.html">HOME</a>
-      <a href="company.html">COMPANY</a>
-      <a href="inquiries.html">INQUIRIES</a>
-    </nav>
 
-    <div class="brand-line">
-      <span id="brandText"></span><span id="brandCursor" class="cursor">_</span>
-    </div>
+<div class="container">
 
-    <section id="paragraph" class="paragraph">
-      We develop firearm components focused on modularity and integrated management of support gear and controls. Our designs are shaped by the demands of serious shooters, law enforcement, and military personnel in the field — where precision, control, and reliability are required.
-    </section>
+<p>
+<span id="brand" class="brand-line"></span>
+</p>
 
-    <div class="slogan">
-      <span id="sloganText"></span><span id="sloganCursor" class="cursor" style="display:none;">_</span>
-    </div>
-  </main>
+<div id="body" class="body-text">
 
-  <script>
-    const brandText = "CANNON KINETICS";
-    const sloganText = "Demand control.";
+<p>
+We develop firearm components focused on modularity and integrated management of support gear and controls. Our designs are shaped by the demands of serious shooters, law enforcement, and military personnel in the field — where precision, control, and reliability are required.
+</p>
 
-    const brandTarget = document.getElementById("brandText");
-    const brandCursor = document.getElementById("brandCursor");
-    const paragraph = document.getElementById("paragraph");
-    const sloganTarget = document.getElementById("sloganText");
-    const sloganCursor = document.getElementById("sloganCursor");
+<p class="tagline">
+<span id="expect-line"></span><br>
+<span id="demand-line"></span>
+</p>
 
-    let brandIndex = 0;
-    let sloganIndex = 0;
+</div>
 
-    function typeBrand() {
-      if (brandIndex < brandText.length) {
-        brandTarget.textContent += brandText.charAt(brandIndex);
-        brandIndex++;
-        setTimeout(typeBrand, 120);
-      } else {
-        setTimeout(() => {
-          paragraph.classList.add("visible");
+</div>
 
-          setTimeout(() => {
-            brandCursor.style.display = "none";
-            sloganCursor.style.display = "inline-block";
-            typeSlogan();
-          }, 10000);
+<script>
+const brandText = "CANNON KINETICS";
+const expectText = "EXPECT PRECISION.";
+const demandText = "DEMAND CONTROL.";
 
-        }, 700);
-      }
+const brandTarget = document.getElementById("brand");
+const body = document.getElementById("body");
+const expectTarget = document.getElementById("expect-line");
+const demandTarget = document.getElementById("demand-line");
+
+let brandIndex = 0;
+const speed = 130;
+
+function typeBrand() {
+  if (brandIndex <= brandText.length) {
+    brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">█</span>';
+    brandIndex++;
+    setTimeout(typeBrand, speed);
+  } else {
+    brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
+
+    setTimeout(function() {
+      body.classList.add("show");
+    }, 1000);
+
+    setTimeout(startExpect, 10000);
+    setTimeout(startDemand, 13000);
+  }
+}
+
+function removeBrandCursor() {
+  const cursor = document.getElementById("brand-cursor");
+  if (cursor) cursor.remove();
+}
+
+function startExpect() {
+  removeBrandCursor();
+
+  let i = 0;
+
+  function type() {
+    if (i <= expectText.length) {
+      const current = expectText.substring(0, i).replace("EXPECT", '<span class="red">EXPECT</span>');
+      expectTarget.innerHTML = current + '<span class="cursor">█</span>';
+      i++;
+      setTimeout(type, speed);
+    } else {
+      expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
     }
+  }
 
-    function typeSlogan() {
-      if (sloganIndex < sloganText.length) {
-        sloganTarget.textContent += sloganText.charAt(sloganIndex);
-        sloganIndex++;
-        setTimeout(typeSlogan, 130);
-      }
+  type();
+}
+
+function startDemand() {
+  let i = 0;
+
+  function type() {
+    if (i <= demandText.length) {
+      const current = demandText.substring(0, i).replace("DEMAND", '<span class="red">DEMAND</span>');
+      demandTarget.innerHTML = current + '<span class="cursor">█</span>';
+      i++;
+      setTimeout(type, speed);
+    } else {
+      demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>') + '<span class="cursor">█</span>';
     }
+  }
 
-    window.addEventListener("load", typeBrand);
-  </script>
+  type();
+}
+
+window.onload = typeBrand;
+</script>
+
 </body>
 </html>
