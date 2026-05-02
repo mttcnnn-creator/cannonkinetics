@@ -89,7 +89,6 @@ h1 {
   text-decoration: none;
   white-space: nowrap;
   z-index: 100;
-  font-family: Arial, sans-serif;
 }
 
 .company-cursor {
@@ -169,7 +168,6 @@ h1 {
 
   .bullet-hole {
     width: 58px;
-    z-index: 999999;
   }
 }
 </style>
@@ -202,10 +200,10 @@ let taglineIndex = 0;
 let companyIndex = 0;
 
 const typeSpeed = 130;
-const companyTypeSpeed = 130;
 
 /* 400 RPM = 150ms between impacts */
 const cyclicRateDelay = 150;
+
 const bulletCount = 7;
 
 function formatTagline(value) {
@@ -222,9 +220,7 @@ function typeTagline() {
     setTimeout(typeTagline, typeSpeed);
   } else {
     tagline.innerHTML = formatTagline(taglineText);
-
     setTimeout(typeCompany, 400);
-    setTimeout(startBulletBurst, 1000);
   }
 }
 
@@ -233,9 +229,12 @@ function typeCompany() {
     const currentCompany = companyText.substring(0, companyIndex);
     companyLink.innerHTML = currentCompany + '<span class="company-cursor">█</span>';
     companyIndex++;
-    setTimeout(typeCompany, companyTypeSpeed);
+    setTimeout(typeCompany, typeSpeed);
   } else {
     companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
+
+    /* Anticipation pause after COMPANY finishes before burst starts */
+    setTimeout(startBulletBurst, 1200);
   }
 }
 
@@ -272,4 +271,3 @@ window.onload = typeTagline;
 
 </body>
 </html>
-
