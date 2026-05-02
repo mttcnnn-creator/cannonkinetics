@@ -52,6 +52,11 @@ h1 {
 
 .red {
   color: #ff0000;
+  transition: color 0.2s ease;
+}
+
+.red:hover {
+  color: #ffffff;
 }
 
 .cursor {
@@ -87,10 +92,10 @@ h1 {
 }
 
 .company-link::after {
-  content: ">";
-  color: #ff0000;
+  content: "█";
+  color: #ffffff;
   font-weight: bold;
-  margin-left: 0;
+  margin-left: 2px;
   animation: blink 0.9s steps(1) infinite;
 }
 
@@ -99,24 +104,25 @@ h1 {
 }
 
 .bullet-hole {
-  position: absolute;
+  position: fixed;
   width: 78px;
   opacity: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 9999;
   mix-blend-mode: screen;
-  transform: scale(0.4) rotate(var(--rotation));
+  transform: translate(-50%, -50%) scale(0.4) rotate(var(--rotation));
   animation: impact 0.18s ease-out forwards;
 }
 
 @keyframes impact {
   0% {
     opacity: 0;
-    transform: scale(0.3) rotate(var(--rotation));
+    transform: translate(-50%, -50%) scale(0.3) rotate(var(--rotation));
   }
+
   100% {
-    opacity: 0.72;
-    transform: scale(1) rotate(var(--rotation));
+    opacity: 0.82;
+    transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
   }
 }
 
@@ -191,7 +197,10 @@ const tagline = document.getElementById("tagline");
 let i = 0;
 
 const typeSpeed = 130;
-const cyclicRateDelay = 100;
+
+/* 400 rounds per minute = 150ms between impacts */
+const cyclicRateDelay = 150;
+
 const bulletCount = 7;
 
 function formatTagline(value) {
@@ -208,7 +217,9 @@ function typeWriter() {
     setTimeout(typeWriter, typeSpeed);
   } else {
     tagline.innerHTML = formatTagline(taglineText);
-    setTimeout(startBulletBurst, 500);
+
+    /* Starts 1 second after tagline finishes */
+    setTimeout(startBulletBurst, 1000);
   }
 }
 
@@ -216,8 +227,8 @@ function startBulletBurst() {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
 
-  const startX = screenWidth * 0.12;
-  const endX = screenWidth * 0.88;
+  const startX = screenWidth * 0.88;
+  const endX = screenWidth * 0.12;
   const centerY = screenHeight * 0.34;
 
   for (let n = 0; n < bulletCount; n++) {
@@ -245,5 +256,4 @@ window.onload = typeWriter;
 
 </body>
 </html>
-
 
