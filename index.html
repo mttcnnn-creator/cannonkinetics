@@ -6,181 +6,189 @@
 
 <style>
 body {
-margin: 0;
-background: #050505;
-color: #fff;
-font-family: Arial, sans-serif;
-text-align: center;
-position: relative;
-overflow: hidden;
+  margin: 0;
+  background: #050505;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 body.shake {
-animation: screenShake 0.14s linear;
+  animation: screenShake 0.14s linear;
 }
 
 .container {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 40px 20px 80px;
-box-sizing: border-box;
-position: relative;
-z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px 80px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
 }
 
 .logo {
-width: 300px;
-max-width: 80%;
-margin-bottom: 30px;
-filter: invert(1) brightness(2);
+  width: 300px;
+  max-width: 80%;
+  margin-bottom: 30px;
+  filter: invert(1) brightness(2);
 }
 
 h1 {
-margin: 0;
-font-size: 3.8em;
-letter-spacing: 12px;
-font-weight: 800;
+  margin: 0;
+  font-size: 3.8em;
+  letter-spacing: 12px;
+  font-weight: 800;
 }
 
 .tagline {
-margin-top: 25px;
-font-size: 1.4em;
-letter-spacing: 4px;
-color: #b8b8b8;
-font-family: "Courier New", Courier, monospace;
-min-height: 1.6em;
+  margin-top: 25px;
+  font-size: 1.4em;
+  letter-spacing: 4px;
+  color: #b8b8b8;
+  font-family: "Courier New", Courier, monospace;
+  min-height: 1.6em;
 }
 
 .red {
-color: #ff0000;
-transition: color 0.2s ease;
+  color: #ff0000;
+  transition: color 0.2s ease;
 }
 
 .red:hover {
-color: #ffffff;
+  color: #ffffff;
 }
 
 .cursor {
-color: #ff0000;
-font-weight: bold;
-animation: blink 0.8s steps(1) infinite;
+  color: #ff0000;
+  font-weight: bold;
+  animation: blink 0.8s steps(1) infinite;
 }
 
 .button {
-display: inline-block;
-margin-top: 50px;
-padding: 16px 55px;
-border: 2px solid #fff;
-text-decoration: none;
-color: #fff;
-font-size: 1.2em;
-letter-spacing: 5px;
-font-weight: bold;
+  display: inline-block;
+  margin-top: 50px;
+  padding: 16px 55px;
+  border: 2px solid #fff;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2em;
+  letter-spacing: 5px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.button.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .company-link {
-position: fixed;
-bottom: 25px;
-left: 50%;
-transform: translateX(-50%);
-font-size: 1em;
-letter-spacing: 5px;
-font-weight: bold;
-color: #cc0000;
-text-decoration: none;
-white-space: nowrap;
-z-index: 100;
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1em;
+  letter-spacing: 5px;
+  font-weight: bold;
+  color: #cc0000;
+  text-decoration: none;
+  white-space: nowrap;
+  z-index: 100;
 }
 
 .company-cursor {
-color: #ffffff;
-font-weight: bold;
-margin-left: 2px;
-animation: blink 0.9s steps(1) infinite;
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 2px;
+  animation: blink 0.9s steps(1) infinite;
 }
 
 .company-link:hover {
-color: #ff0000;
+  color: #ff0000;
 }
 
 .bullet-hole {
-position: fixed;
-width: 78px;
-opacity: 0;
-pointer-events: none;
-z-index: 999999;
-transform: translate(-50%, -50%) scale(0.4) rotate(var(--rotation));
-animation: impact 0.18s ease-out forwards;
+  position: fixed;
+  width: 78px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%) scale(0.4) rotate(var(--rotation));
+  animation: impact 0.18s ease-out forwards;
 }
 
 @keyframes impact {
-0% {
-opacity: 0;
-transform: translate(-50%, -50%) scale(0.3) rotate(var(--rotation));
-}
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3) rotate(var(--rotation));
+  }
 
-100% {
-opacity: 1;
-transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
-}
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
+  }
 }
 
 @keyframes blink {
-50% {
-opacity: 0;
-}
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes screenShake {
-0% { transform: translate(0, 0); }
-25% { transform: translate(-2px, 1px); }
-50% { transform: translate(2px, -1px); }
-75% { transform: translate(-1px, -2px); }
-100% { transform: translate(0, 0); }
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(2px, -1px); }
+  75% { transform: translate(-1px, -2px); }
+  100% { transform: translate(0, 0); }
 }
 
 /* Mobile */
 @media (max-width: 700px) {
-.container {
-padding: 30px 16px 90px;
-}
+  .container {
+    padding: 30px 16px 90px;
+  }
 
-h1 {
-font-size: 2em;
-letter-spacing: 5px;
-line-height: 1.2;
-}
+  h1 {
+    font-size: 2em;
+    letter-spacing: 5px;
+    line-height: 1.2;
+  }
 
-.tagline {
-font-size: 0.85em;
-letter-spacing: 1px;
-line-height: 1.5;
-}
+  .tagline {
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
 
-.logo {
-width: 210px;
-margin-bottom: 25px;
-}
+  .logo {
+    width: 210px;
+    margin-bottom: 25px;
+  }
 
-.button {
-font-size: 0.95em;
-padding: 12px 28px;
-letter-spacing: 3px;
-margin-top: 42px;
-}
+  .button {
+    font-size: 0.95em;
+    padding: 12px 28px;
+    letter-spacing: 3px;
+    margin-top: 42px;
+  }
 
-.company-link {
-font-size: 0.9em;
-letter-spacing: 3px;
-bottom: 24px;
-}
+  .company-link {
+    font-size: 0.9em;
+    letter-spacing: 3px;
+    bottom: 24px;
+  }
 
-.bullet-hole {
-width: 58px;
-}
+  .bullet-hole {
+    width: 58px;
+  }
 }
 </style>
 </head>
@@ -189,13 +197,13 @@ width: 58px;
 
 <div class="container">
 
-<img src="Cannon (9).png" class="logo">
+  <img src="Cannon (9).png" class="logo">
 
-<h1>CANNON KINETICS</h1>
+  <h1>CANNON KINETICS</h1>
 
-<div class="tagline" id="tagline"></div>
+  <div class="tagline" id="tagline"></div>
 
-<a href="patience.html" class="button">COMING SOON</a>
+  <a href="patience.html" class="button" id="coming-soon-button">COMING SOON</a>
 
 </div>
 
@@ -207,87 +215,90 @@ const companyText = "COMPANY";
 
 const tagline = document.getElementById("tagline");
 const companyLink = document.getElementById("company-link");
+const comingSoonButton = document.getElementById("coming-soon-button");
 
 let taglineIndex = 0;
 let companyIndex = 0;
 
 const typeSpeed = 130;
-
-/* 400 RPM = 150ms between impacts */
 const cyclicRateDelay = 150;
-
 const bulletCount = 7;
 
 function formatTagline(value) {
-return value
-.replace("EXPECT", '<span class="red">EXPECT</span>')
-.replace("DEMAND", '<span class="red">DEMAND</span>');
+  return value
+    .replace("EXPECT", '<span class="red">EXPECT</span>')
+    .replace("DEMAND", '<span class="red">DEMAND</span>');
 }
 
 function typeTagline() {
-if (taglineIndex <= taglineText.length) {
-const currentText = taglineText.substring(0, taglineIndex);
-tagline.innerHTML = formatTagline(currentText) + '<span class="cursor">|</span>';
-taglineIndex++;
-setTimeout(typeTagline, typeSpeed);
-} else {
-tagline.innerHTML = formatTagline(taglineText);
-setTimeout(typeCompany, 400);
-}
+  if (taglineIndex <= taglineText.length) {
+    const currentText = taglineText.substring(0, taglineIndex);
+    tagline.innerHTML = formatTagline(currentText) + '<span class="cursor">|</span>';
+    taglineIndex++;
+    setTimeout(typeTagline, typeSpeed);
+  } else {
+    tagline.innerHTML = formatTagline(taglineText);
+    setTimeout(typeCompany, 400);
+  }
 }
 
 function typeCompany() {
-if (companyIndex <= companyText.length) {
-const currentCompany = companyText.substring(0, companyIndex);
-companyLink.innerHTML = currentCompany + '<span class="company-cursor">█</span>';
-companyIndex++;
-setTimeout(typeCompany, typeSpeed);
-} else {
-companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
-
-/* Anticipation pause after COMPANY finishes before burst starts */
-setTimeout(startBulletBurst, 1200);
-}
+  if (companyIndex <= companyText.length) {
+    const currentCompany = companyText.substring(0, companyIndex);
+    companyLink.innerHTML = currentCompany + '<span class="company-cursor">█</span>';
+    companyIndex++;
+    setTimeout(typeCompany, typeSpeed);
+  } else {
+    companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
+    setTimeout(startBulletBurst, 1200);
+  }
 }
 
 function shakeScreen() {
-document.body.classList.remove("shake");
-void document.body.offsetWidth;
-document.body.classList.add("shake");
+  document.body.classList.remove("shake");
+  void document.body.offsetWidth;
+  document.body.classList.add("shake");
 }
 
 function startBulletBurst() {
-const screenWidth = window.innerWidth;
-const screenHeight = window.innerHeight;
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
 
-const startX = screenWidth * 0.88;
-const endX = screenWidth * 0.12;
-const centerY = screenHeight * 0.34;
+  const startX = screenWidth * 0.88;
+  const endX = screenWidth * 0.12;
+  const centerY = screenHeight * 0.34;
 
-for (let n = 0; n < bulletCount; n++) {
-setTimeout(() => {
-const bullet = document.createElement("img");
-bullet.src = "bullet-hole.png";
-bullet.className = "bullet-hole";
+  for (let n = 0; n < bulletCount; n++) {
+    setTimeout(() => {
+      const bullet = document.createElement("img");
+      bullet.src = "bullet-hole.png";
+      bullet.className = "bullet-hole";
 
-const progress = n / (bulletCount - 1);
-const x = startX + (endX - startX) * progress;
-const randomY = centerY + (Math.random() * 180 - 90);
-const rotation = Math.floor(Math.random() * 90 - 45) + "deg";
+      const progress = n / (bulletCount - 1);
+      const x = startX + (endX - startX) * progress;
+      const randomY = centerY + (Math.random() * 180 - 90);
+      const rotation = Math.floor(Math.random() * 90 - 45) + "deg";
 
-bullet.style.left = x + "px";
-bullet.style.top = randomY + "px";
-bullet.style.setProperty("--rotation", rotation);
+      bullet.style.left = x + "px";
+      bullet.style.top = randomY + "px";
+      bullet.style.setProperty("--rotation", rotation);
 
-document.body.appendChild(bullet);
-shakeScreen();
-}, n * cyclicRateDelay);
+      document.body.appendChild(bullet);
+      shakeScreen();
+
+      if (n === bulletCount - 1) {
+        setTimeout(showComingSoonButton, 300);
+      }
+    }, n * cyclicRateDelay);
+  }
 }
+
+function showComingSoonButton() {
+  comingSoonButton.classList.add("show");
 }
 
-/* 1 second delay before homepage typewriter starts */
 window.onload = function() {
-setTimeout(typeTagline, 1000);
+  setTimeout(typeTagline, 1000);
 };
 </script>
 
