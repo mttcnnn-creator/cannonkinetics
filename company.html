@@ -6,88 +6,84 @@
 
 <style>
 body {
-margin: 0;
-background: #000;
-color: #fff;
-font-family: "Courier New", Courier, monospace;
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
-max-width: 800px;
-padding: 50px 24px;
-line-height: 1.7;
+  max-width: 800px;
+  padding: 50px 24px;
+  line-height: 1.7;
 }
 
 .brand-line {
-font-size: 1.2em;
-font-weight: bold;
-letter-spacing: 3px;
-color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #fff;
 }
 
-/* 🔥 MSDOS BLOCK CURSOR */
 .cursor {
-display: inline-block;
-width: 0.6em;
-height: 1em;
-background: #ff0000;
-vertical-align: -0.15em;
-animation: blink 0.8s steps(1) infinite;
+  color: #ff0000;
+  font-weight: bold;
+  animation: blink 0.8s steps(1) infinite;
 }
 
 .body-text {
-opacity: 0;
-transition: opacity 0.6s ease;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
 p {
-margin-bottom: 22px;
-color: #ccc;
-font-size: 1rem;
+  margin-bottom: 22px;
+  color: #ccc;
+  font-size: 1rem;
 }
 
 .tagline {
-margin-top: 45px;
-letter-spacing: 3px;
-color: #fff;
-line-height: 1.5;
-min-height: 3.2em;
+  margin-top: 45px;
+  letter-spacing: 3px;
+  color: #fff;
+  line-height: 1.5;
+  min-height: 3em;
 }
 
 .red {
-color: #ff0000;
+  color: #ff0000;
 }
 
 @keyframes blink {
-50% { opacity: 0; }
+  50% { opacity: 0; }
 }
 
 /* Mobile */
 @media (max-width: 700px) {
-.container {
-padding: 40px 18px;
-}
+  .container {
+    padding: 40px 18px;
+  }
 
-.brand-line {
-font-size: 1.05em;
-letter-spacing: 2px;
-}
+  .brand-line {
+    font-size: 1.05em;
+    letter-spacing: 2px;
+  }
 
-p {
-font-size: 0.95rem;
-line-height: 1.6;
-}
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
 
-.tagline {
-letter-spacing: 2px;
-font-size: 0.95em;
-margin-top: 35px;
-line-height: 1.4;
-}
+  .tagline {
+    letter-spacing: 2px;
+    font-size: 0.95em;
+    margin-top: 35px;
+    line-height: 1.4;
+  }
 }
 </style>
 </head>
@@ -103,7 +99,11 @@ line-height: 1.4;
 <div id="body" class="body-text">
 
 <p>
-Develops firearms components focused on cross-compatibility, modularity, and integrated control of mission-critical systems for modern weapon platforms. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.
+develops firearms components focused on cross-compatibility, modularity, and integrated control of mission-critical systems for modern weapon platforms. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.
+</p>
+
+<p>
+We design purely for function. Looking this good is just a byproduct.
 </p>
 
 <p class="tagline">
@@ -125,63 +125,71 @@ const body = document.getElementById("body");
 const expectTarget = document.getElementById("expect-line");
 const demandTarget = document.getElementById("demand-line");
 
+let brandIndex = 0;
 const speed = 130;
 
-function typeText(target, text, callback, keepCursor = false) {
-let i = 0;
+/* TYPE BRAND */
+function typeBrand() {
+  if (brandIndex <= brandText.length) {
+    brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">|</span>';
+    brandIndex++;
+    setTimeout(typeBrand, speed);
+  } else {
+    brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">|</span>';
 
-function type() {
-if (i <= text.length) {
-const current = text.substring(0, i);
+    setTimeout(() => {
+      body.style.opacity = 1;
 
-if (text.startsWith("EXPECT")) {
-target.innerHTML = current.replace("EXPECT", '<span class="red">EXPECT</span>') + '<span class="cursor"></span>';
-} else if (text.startsWith("DEMAND")) {
-target.innerHTML = current.replace("DEMAND", '<span class="red">DEMAND</span>') + '<span class="cursor"></span>';
-} else {
-target.innerHTML = current + '<span class="cursor"></span>';
+      setTimeout(startExpect, 10000);
+      setTimeout(startDemand, 13000);
+
+    }, 300);
+  }
 }
 
-i++;
-setTimeout(type, speed);
-} else {
-if (text.startsWith("EXPECT")) {
-target.innerHTML = text.replace("EXPECT", '<span class="red">EXPECT</span>');
-} else if (text.startsWith("DEMAND")) {
-target.innerHTML = text.replace("DEMAND", '<span class="red">DEMAND</span>');
-} else if (keepCursor) {
-target.innerHTML = text + '<span class="cursor"></span>';
-} else {
-target.innerHTML = text;
+/* REMOVE TOP CURSOR WHEN TAGLINE STARTS */
+function removeBrandCursor() {
+  const cursor = document.getElementById("brand-cursor");
+  if (cursor) cursor.remove();
 }
 
-if (callback) callback();
+/* TYPE EXPECT */
+function startExpect() {
+  removeBrandCursor();
+
+  let i = 0;
+  function type() {
+    if (i <= expectText.length) {
+      const txt = expectText.substring(0, i)
+        .replace("EXPECT", '<span class="red">EXPECT</span>');
+      expectTarget.innerHTML = txt + '<span class="cursor">|</span>';
+      i++;
+      setTimeout(type, speed);
+    } else {
+      expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
+    }
+  }
+  type();
 }
+
+/* TYPE DEMAND */
+function startDemand() {
+  let i = 0;
+  function type() {
+    if (i <= demandText.length) {
+      const txt = demandText.substring(0, i)
+        .replace("DEMAND", '<span class="red">DEMAND</span>');
+      demandTarget.innerHTML = txt + '<span class="cursor">|</span>';
+      i++;
+      setTimeout(type, speed);
+    } else {
+      demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>');
+    }
+  }
+  type();
 }
 
-type();
-}
-
-window.onload = function() {
-typeText(brandTarget, brandText, function() {
-
-// your adjusted delay (faster appearance)
-setTimeout(function() {
-
-body.style.opacity = 1;
-
-setTimeout(function() {
-typeText(expectTarget, expectText);
-}, 10000);
-
-setTimeout(function() {
-typeText(demandTarget, demandText);
-}, 13000);
-
-}, 800);
-
-}, true);
-};
+window.onload = typeBrand;
 </script>
 
 </body>
