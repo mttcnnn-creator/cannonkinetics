@@ -6,204 +6,189 @@
 
 <style>
 body {
-  margin: 0;
-  background: #050505;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+margin: 0;
+background: #050505;
+color: #fff;
+font-family: Arial, sans-serif;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+/* 🔥 FADE-IN WRAPPER */
+.intro {
+opacity: 0;
+animation: fadeInIntro 1s ease forwards;
+}
+
+@keyframes fadeInIntro {
+to { opacity: 1; }
 }
 
 body.shake {
-  animation: screenShake 0.14s linear;
+animation: screenShake 0.14s linear;
 }
 
 .container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px 80px;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 10;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 40px 20px 80px;
+box-sizing: border-box;
+position: relative;
+z-index: 10;
 }
 
 .logo {
-  width: 300px;
-  max-width: 80%;
-  margin-bottom: 30px;
-  filter: invert(1) brightness(2);
+width: 300px;
+max-width: 80%;
+margin-bottom: 30px;
+filter: invert(1) brightness(2);
 }
 
 h1 {
-  margin: 0;
-  font-size: 3.8em;
-  letter-spacing: 12px;
-  font-weight: 800;
+margin: 0;
+font-size: 3.8em;
+letter-spacing: 12px;
+font-weight: 800;
 }
 
 .tagline {
-  margin-top: 25px;
-  font-size: 1.4em;
-  letter-spacing: 4px;
-  color: #b8b8b8;
-  font-family: "Courier New", Courier, monospace;
-  min-height: 1.6em;
+margin-top: 25px;
+font-size: 1.4em;
+letter-spacing: 4px;
+color: #b8b8b8;
+font-family: "Courier New", Courier, monospace;
+min-height: 1.6em;
 }
 
 .red {
-  color: #ff0000;
-  transition: color 0.2s ease;
+color: #ff0000;
+transition: color 0.2s ease;
 }
 
 .red:hover {
-  color: #ffffff;
+color: #ffffff;
 }
 
 .cursor {
-  color: #ff0000;
-  font-weight: bold;
-  animation: blink 0.8s steps(1) infinite;
+color: #ff0000;
+font-weight: bold;
+animation: blink 0.8s steps(1) infinite;
 }
 
 .button {
-  display: inline-block;
-  margin-top: 50px;
-  padding: 16px 55px;
-  border: 2px solid #fff;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.2em;
-  letter-spacing: 5px;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  pointer-events: none;
+display: inline-block;
+margin-top: 50px;
+padding: 16px 55px;
+border: 2px solid #fff;
+text-decoration: none;
+color: #fff;
+font-size: 1.2em;
+letter-spacing: 5px;
+font-weight: bold;
+opacity: 0;
+transition: opacity 0.8s ease;
+pointer-events: none;
 }
 
 .button.show {
-  opacity: 1;
-  pointer-events: auto;
+opacity: 1;
+pointer-events: auto;
 }
 
 .company-link {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1em;
-  letter-spacing: 5px;
-  font-weight: bold;
-  color: #cc0000;
-  text-decoration: none;
-  white-space: nowrap;
-  z-index: 100;
+position: fixed;
+bottom: 25px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 1em;
+letter-spacing: 5px;
+font-weight: bold;
+color: #cc0000;
+text-decoration: none;
+white-space: nowrap;
+z-index: 100;
 }
 
 .company-cursor {
-  color: #ffffff;
-  font-weight: bold;
-  margin-left: 2px;
-  animation: blink 0.9s steps(1) infinite;
+color: #ffffff;
+font-weight: bold;
+margin-left: 2px;
+animation: blink 0.9s steps(1) infinite;
 }
 
 .company-link:hover {
-  color: #ff0000;
+color: #ff0000;
 }
 
 .bullet-hole {
-  position: fixed;
-  width: 78px;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 999999;
-  transform: translate(-50%, -50%) scale(0.4) rotate(var(--rotation));
-  animation: impact 0.18s ease-out forwards;
+position: fixed;
+width: 78px;
+opacity: 0;
+pointer-events: none;
+z-index: 999999;
+transform: translate(-50%, -50%) scale(0.4) rotate(var(--rotation));
+animation: impact 0.18s ease-out forwards;
 }
 
 @keyframes impact {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.3) rotate(var(--rotation));
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
-  }
+0% {
+opacity: 0;
+transform: translate(-50%, -50%) scale(0.3) rotate(var(--rotation));
+}
+100% {
+opacity: 1;
+transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
+}
 }
 
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+50% { opacity: 0; }
 }
 
 @keyframes screenShake {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-2px, 1px); }
-  50% { transform: translate(2px, -1px); }
-  75% { transform: translate(-1px, -2px); }
-  100% { transform: translate(0, 0); }
+0% { transform: translate(0, 0); }
+25% { transform: translate(-2px, 1px); }
+50% { transform: translate(2px, -1px); }
+75% { transform: translate(-1px, -2px); }
+100% { transform: translate(0, 0); }
 }
 
 /* Mobile */
 @media (max-width: 700px) {
-  .container {
-    padding: 30px 16px 90px;
-  }
-
-  h1 {
-    font-size: 2em;
-    letter-spacing: 5px;
-    line-height: 1.2;
-  }
-
-  .tagline {
-    font-size: 0.85em;
-    letter-spacing: 1px;
-    line-height: 1.5;
-  }
-
-  .logo {
-    width: 210px;
-    margin-bottom: 25px;
-  }
-
-  .button {
-    font-size: 0.95em;
-    padding: 12px 28px;
-    letter-spacing: 3px;
-    margin-top: 42px;
-  }
-
-  .company-link {
-    font-size: 0.9em;
-    letter-spacing: 3px;
-    bottom: 24px;
-  }
-
-  .bullet-hole {
-    width: 58px;
-  }
+h1 {
+font-size: 2em;
+letter-spacing: 5px;
+}
+.tagline {
+font-size: 0.85em;
+letter-spacing: 1px;
+}
+.logo {
+width: 210px;
+}
+.button {
+font-size: 0.95em;
+padding: 12px 28px;
+}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container intro">
 
-  <img src="Cannon (9).png" class="logo">
+<img src="Cannon (9).png" class="logo">
 
-  <h1>CANNON KINETICS</h1>
+<h1>CANNON KINETICS</h1>
 
-  <div class="tagline" id="tagline"></div>
+<div class="tagline" id="tagline"></div>
 
-  <a href="patience.html" class="button" id="coming-soon-button">COMING SOON</a>
+<a href="patience.html" class="button" id="coming-soon-button">COMING SOON</a>
 
 </div>
 
@@ -215,90 +200,83 @@ const companyText = "COMPANY";
 
 const tagline = document.getElementById("tagline");
 const companyLink = document.getElementById("company-link");
-const comingSoonButton = document.getElementById("coming-soon-button");
+const button = document.getElementById("coming-soon-button");
 
 let taglineIndex = 0;
 let companyIndex = 0;
 
 const typeSpeed = 130;
-const cyclicRateDelay = 150;
+const bulletDelay = 150;
 const bulletCount = 7;
 
-function formatTagline(value) {
-  return value
-    .replace("EXPECT", '<span class="red">EXPECT</span>')
-    .replace("DEMAND", '<span class="red">DEMAND</span>');
+function formatTagline(text) {
+return text
+.replace("EXPECT", '<span class="red">EXPECT</span>')
+.replace("DEMAND", '<span class="red">DEMAND</span>');
 }
 
 function typeTagline() {
-  if (taglineIndex <= taglineText.length) {
-    const currentText = taglineText.substring(0, taglineIndex);
-    tagline.innerHTML = formatTagline(currentText) + '<span class="cursor">|</span>';
-    taglineIndex++;
-    setTimeout(typeTagline, typeSpeed);
-  } else {
-    tagline.innerHTML = formatTagline(taglineText);
-    setTimeout(typeCompany, 400);
-  }
+if (taglineIndex <= taglineText.length) {
+const current = taglineText.substring(0, taglineIndex);
+tagline.innerHTML = formatTagline(current) + '<span class="cursor">|</span>';
+taglineIndex++;
+setTimeout(typeTagline, typeSpeed);
+} else {
+tagline.innerHTML = formatTagline(taglineText);
+setTimeout(typeCompany, 400);
+}
 }
 
 function typeCompany() {
-  if (companyIndex <= companyText.length) {
-    const currentCompany = companyText.substring(0, companyIndex);
-    companyLink.innerHTML = currentCompany + '<span class="company-cursor">█</span>';
-    companyIndex++;
-    setTimeout(typeCompany, typeSpeed);
-  } else {
-    companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
-    setTimeout(startBulletBurst, 1200);
-  }
+if (companyIndex <= companyText.length) {
+const current = companyText.substring(0, companyIndex);
+companyLink.innerHTML = current + '<span class="company-cursor">█</span>';
+companyIndex++;
+setTimeout(typeCompany, typeSpeed);
+} else {
+companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
+setTimeout(startBullets, 1200);
+}
 }
 
-function shakeScreen() {
-  document.body.classList.remove("shake");
-  void document.body.offsetWidth;
-  document.body.classList.add("shake");
+function shake() {
+document.body.classList.remove("shake");
+void document.body.offsetWidth;
+document.body.classList.add("shake");
 }
 
-function startBulletBurst() {
-  const screenWidth = window.innerWidth;
-  const screenHeight = window.innerHeight;
+function startBullets() {
+const w = window.innerWidth;
+const h = window.innerHeight;
 
-  const startX = screenWidth * 0.88;
-  const endX = screenWidth * 0.12;
-  const centerY = screenHeight * 0.34;
+for (let i = 0; i < bulletCount; i++) {
+setTimeout(() => {
+const hole = document.createElement("img");
+hole.src = "bullet-hole.png";
+hole.className = "bullet-hole";
 
-  for (let n = 0; n < bulletCount; n++) {
-    setTimeout(() => {
-      const bullet = document.createElement("img");
-      bullet.src = "bullet-hole.png";
-      bullet.className = "bullet-hole";
+const x = w * (0.88 - (0.76 * (i / (bulletCount - 1))));
+const y = h * 0.34 + (Math.random() * 180 - 90);
 
-      const progress = n / (bulletCount - 1);
-      const x = startX + (endX - startX) * progress;
-      const randomY = centerY + (Math.random() * 180 - 90);
-      const rotation = Math.floor(Math.random() * 90 - 45) + "deg";
+hole.style.left = x + "px";
+hole.style.top = y + "px";
+hole.style.setProperty("--rotation", (Math.random()*90-45)+"deg");
 
-      bullet.style.left = x + "px";
-      bullet.style.top = randomY + "px";
-      bullet.style.setProperty("--rotation", rotation);
+document.body.appendChild(hole);
+shake();
 
-      document.body.appendChild(bullet);
-      shakeScreen();
-
-      if (n === bulletCount - 1) {
-        setTimeout(showComingSoonButton, 300);
-      }
-    }, n * cyclicRateDelay);
-  }
+if (i === bulletCount - 1) {
+setTimeout(() => button.classList.add("show"), 300);
+}
+}, i * bulletDelay);
+}
 }
 
-function showComingSoonButton() {
-  comingSoonButton.classList.add("show");
-}
-
+/* ⏱️ WAIT FOR FADE-IN TO COMPLETE */
 window.onload = function() {
-  setTimeout(typeTagline, 1000);
+setTimeout(() => {
+setTimeout(typeTagline, 1000);
+}, 1000);
 };
 </script>
 
