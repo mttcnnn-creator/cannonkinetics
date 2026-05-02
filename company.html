@@ -6,90 +6,91 @@
 
 <style>
 body {
-  margin: 0;
-  background: #000;
-  color: #fff;
-  font-family: "Courier New", Courier, monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+margin: 0;
+background: #000;
+color: #fff;
+font-family: "Courier New", Courier, monospace;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
 }
 
 .container {
-  max-width: 800px;
-  padding: 50px 24px;
-  line-height: 1.7;
+max-width: 800px;
+padding: 50px 24px;
+line-height: 1.7;
 }
 
 .brand-line {
-  font-size: 1.2em;
-  font-weight: bold;
-  letter-spacing: 3px;
-  color: #fff;
+font-size: 1.2em;
+font-weight: bold;
+letter-spacing: 3px;
+color: #fff;
 }
 
+/* 🔴 BRAND CURSOR NOW RED */
 .cursor {
-  color: #fff;
-  font-weight: bold;
-  animation: blink 0.8s steps(1) infinite;
+color: #ff0000;
+font-weight: bold;
+animation: blink 0.8s steps(1) infinite;
 }
 
 .body-text {
-  opacity: 0;
-  transition: opacity 0.6s ease;
+opacity: 0;
+transition: opacity 0.6s ease;
 }
 
 .body-text.show {
-  opacity: 1;
+opacity: 1;
 }
 
 p {
-  margin-bottom: 22px;
-  color: #ccc;
-  font-size: 1rem;
+margin-bottom: 22px;
+color: #ccc;
+font-size: 1rem;
 }
 
 .tagline {
-  margin-top: 45px;
-  letter-spacing: 3px;
-  color: #fff;
-  line-height: 1.5;
-  min-height: 3em;
+margin-top: 45px;
+letter-spacing: 3px;
+color: #fff;
+line-height: 1.5;
+min-height: 3em;
 }
 
 .red {
-  color: #ff0000;
+color: #ff0000;
 }
 
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+50% {
+opacity: 0;
+}
 }
 
 /* Mobile */
 @media (max-width: 700px) {
-  .container {
-    padding: 40px 18px;
-  }
+.container {
+padding: 40px 18px;
+}
 
-  .brand-line {
-    font-size: 1.05em;
-    letter-spacing: 2px;
-  }
+.brand-line {
+font-size: 1.05em;
+letter-spacing: 2px;
+}
 
-  p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
+p {
+font-size: 0.95rem;
+line-height: 1.6;
+}
 
-  .tagline {
-    letter-spacing: 2px;
-    font-size: 0.95em;
-    margin-top: 35px;
-    line-height: 1.4;
-  }
+.tagline {
+letter-spacing: 2px;
+font-size: 0.95em;
+margin-top: 35px;
+line-height: 1.4;
+}
 }
 </style>
 </head>
@@ -131,61 +132,62 @@ let brandIndex = 0;
 const speed = 130;
 
 function typeBrand() {
-  if (brandIndex <= brandText.length) {
-    brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">█</span>';
-    brandIndex++;
-    setTimeout(typeBrand, speed);
-  } else {
-    brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
+if (brandIndex <= brandText.length) {
+brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">█</span>';
+brandIndex++;
+setTimeout(typeBrand, speed);
+} else {
+brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
 
-    setTimeout(function() {
-      body.classList.add("show");
-    }, 300);
+// ⏱️ DELAY PARAGRAPH FADE-IN (1 SECOND)
+setTimeout(function() {
+body.classList.add("show");
+}, 1000);
 
-    setTimeout(startExpect, 10000);
-    setTimeout(startDemand, 13000);
-  }
+setTimeout(startExpect, 10000);
+setTimeout(startDemand, 13000);
+}
 }
 
 function removeBrandCursor() {
-  const cursor = document.getElementById("brand-cursor");
-  if (cursor) cursor.remove();
+const cursor = document.getElementById("brand-cursor");
+if (cursor) cursor.remove();
 }
 
 function startExpect() {
-  removeBrandCursor();
+removeBrandCursor();
 
-  let i = 0;
+let i = 0;
 
-  function type() {
-    if (i <= expectText.length) {
-      const current = expectText.substring(0, i).replace("EXPECT", '<span class="red">EXPECT</span>');
-      expectTarget.innerHTML = current + '<span class="cursor">█</span>';
-      i++;
-      setTimeout(type, speed);
-    } else {
-      expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
-    }
-  }
+function type() {
+if (i <= expectText.length) {
+const current = expectText.substring(0, i).replace("EXPECT", '<span class="red">EXPECT</span>');
+expectTarget.innerHTML = current + '<span class="cursor">█</span>';
+i++;
+setTimeout(type, speed);
+} else {
+expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
+}
+}
 
-  type();
+type();
 }
 
 function startDemand() {
-  let i = 0;
+let i = 0;
 
-  function type() {
-    if (i <= demandText.length) {
-      const current = demandText.substring(0, i).replace("DEMAND", '<span class="red">DEMAND</span>');
-      demandTarget.innerHTML = current + '<span class="cursor">█</span>';
-      i++;
-      setTimeout(type, speed);
-    } else {
-      demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>');
-    }
-  }
+function type() {
+if (i <= demandText.length) {
+const current = demandText.substring(0, i).replace("DEMAND", '<span class="red">DEMAND</span>');
+demandTarget.innerHTML = current + '<span class="cursor">█</span>';
+i++;
+setTimeout(type, speed);
+} else {
+demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>');
+}
+}
 
-  type();
+type();
 }
 
 window.onload = typeBrand;
