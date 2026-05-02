@@ -6,83 +6,84 @@
 
 <style>
 body {
-  margin: 0;
-  background: #000;
-  color: #fff;
-  font-family: "Courier New", Courier, monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+margin: 0;
+background: #000;
+color: #fff;
+font-family: "Courier New", Courier, monospace;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
 }
 
 .container {
-  max-width: 800px;
-  padding: 50px 24px;
-  line-height: 1.7;
+max-width: 800px;
+padding: 50px 24px;
+line-height: 1.7;
 }
 
 .brand-line {
-  font-size: 1.2em;
-  font-weight: bold;
-  letter-spacing: 3px;
-  color: #fff;
+font-size: 1.2em;
+font-weight: bold;
+letter-spacing: 3px;
+color: #fff;
 }
 
 .cursor {
-  color: #ff0000;
-  font-weight: bold;
-  animation: blink 0.8s steps(1) infinite;
+color: #ff0000;
+font-weight: bold;
+animation: blink 0.8s steps(1) infinite;
 }
 
 .body-text {
-  opacity: 0;
-  transition: opacity 0.6s ease;
+opacity: 0;
+transition: opacity 0.6s ease;
 }
 
 p {
-  margin-bottom: 22px;
-  color: #ccc;
-  font-size: 1rem;
+margin-bottom: 22px;
+color: #ccc;
+font-size: 1rem;
 }
 
 .tagline {
-  margin-top: 45px;
-  letter-spacing: 3px;
-  color: #fff;
-  line-height: 1.5;
+margin-top: 45px;
+letter-spacing: 3px;
+color: #fff;
+line-height: 1.5;
+min-height: 3.2em;
 }
 
 .red {
-  color: #ff0000;
+color: #ff0000;
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+50% { opacity: 0; }
 }
 
 /* Mobile */
 @media (max-width: 700px) {
-  .container {
-    padding: 40px 18px;
-  }
+.container {
+padding: 40px 18px;
+}
 
-  .brand-line {
-    font-size: 1.05em;
-    letter-spacing: 2px;
-  }
+.brand-line {
+font-size: 1.05em;
+letter-spacing: 2px;
+}
 
-  p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
+p {
+font-size: 0.95rem;
+line-height: 1.6;
+}
 
-  .tagline {
-    letter-spacing: 2px;
-    font-size: 0.95em;
-    margin-top: 35px;
-    line-height: 1.4;
-  }
+.tagline {
+letter-spacing: 2px;
+font-size: 0.95em;
+margin-top: 35px;
+line-height: 1.4;
+}
 }
 </style>
 </head>
@@ -106,8 +107,8 @@ We design purely for function. Looking this good is just a byproduct.
 </p>
 
 <p class="tagline">
-<span class="red">EXPECT</span> PRECISION.<br>
-<span class="red">DEMAND</span> CONTROL.
+<span id="expect-line"></span><br>
+<span id="demand-line"></span>
 </p>
 
 </div>
@@ -115,27 +116,71 @@ We design purely for function. Looking this good is just a byproduct.
 </div>
 
 <script>
-const text = "CANNON KINETICS";
-const target = document.getElementById("brand");
+const brandText = "CANNON KINETICS";
+const expectText = "EXPECT PRECISION.";
+const demandText = "DEMAND CONTROL.";
+
+const brandTarget = document.getElementById("brand");
 const body = document.getElementById("body");
+const expectTarget = document.getElementById("expect-line");
+const demandTarget = document.getElementById("demand-line");
 
+const speed = 130;
+
+function typeText(target, text, callback) {
 let i = 0;
-const speed = 130; // 🔥 YOUR REQUESTED SPEED (ms per character)
 
-function typeWriter() {
-  if (i <= text.length) {
-    target.innerHTML = text.substring(0, i) + '<span class="cursor">|</span>';
-    i++;
-    setTimeout(typeWriter, speed);
-  } else {
-    target.innerHTML = text;
-    setTimeout(() => {
-      body.style.opacity = 1;
-    }, 300); // slight delay before text appears
-  }
+function type() {
+if (i <= text.length) {
+const current = text.substring(0, i);
+
+if (text.startsWith("EXPECT")) {
+target.innerHTML = current.replace("EXPECT", '<span class="red">EXPECT</span>') + '<span class="cursor">|</span>';
+} else if (text.startsWith("DEMAND")) {
+target.innerHTML = current.replace("DEMAND", '<span class="red">DEMAND</span>') + '<span class="cursor">|</span>';
+} else {
+target.innerHTML = current + '<span class="cursor">|</span>';
 }
 
-window.onload = typeWriter;
+i++;
+setTimeout(type, speed);
+} else {
+if (text.startsWith("EXPECT")) {
+target.innerHTML = text.replace("EXPECT", '<span class="red">EXPECT</span>');
+} else if (text.startsWith("DEMAND")) {
+target.innerHTML = text.replace("DEMAND", '<span class="red">DEMAND</span>');
+} else {
+target.innerHTML = text;
+}
+
+if (callback) callback();
+}
+}
+
+type();
+}
+
+window.onload = function() {
+typeText(brandTarget, brandText, function() {
+
+// 🔥 Increased delay before body appears (was 300ms → now 1300ms)
+setTimeout(function() {
+
+body.style.opacity = 1;
+
+// 🔥 Timers now start AFTER body appears
+setTimeout(function() {
+typeText(expectTarget, expectText);
+}, 10000);
+
+setTimeout(function() {
+typeText(demandTarget, demandText);
+}, 13000);
+
+}, 1300);
+
+});
+};
 </script>
 
 </body>
