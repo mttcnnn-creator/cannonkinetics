@@ -1,3 +1,13 @@
+
+
+1 of 25,237
+(no subject)
+Inbox
+
+Matt <mttcnnn@gmail.com>
+2:06 PM (0 minutes ago)
+to me
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +39,7 @@ letter-spacing: 3px;
 color: #fff;
 }
 
-/* 🔴 BRAND CURSOR NOW RED */
+/* RED CURSOR */
 .cursor {
 color: #ff0000;
 font-weight: bold;
@@ -64,9 +74,7 @@ color: #ff0000;
 }
 
 @keyframes blink {
-50% {
-opacity: 0;
-}
+50% { opacity: 0; }
 }
 
 /* Mobile */
@@ -139,7 +147,6 @@ setTimeout(typeBrand, speed);
 } else {
 brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
 
-// ⏱️ DELAY PARAGRAPH FADE-IN (1 SECOND)
 setTimeout(function() {
 body.classList.add("show");
 }, 1000);
@@ -183,7 +190,8 @@ demandTarget.innerHTML = current + '<span class="cursor">█</span>';
 i++;
 setTimeout(type, speed);
 } else {
-demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>');
+/* 🔥 FINAL STATE WITH PERMANENT BLINKING CURSOR */
+demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>') + '<span class="cursor">█</span>';
 }
 }
 
