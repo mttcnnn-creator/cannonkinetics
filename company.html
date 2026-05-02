@@ -9,7 +9,7 @@ body {
   margin: 0;
   background: #000;
   color: #fff;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Lucida Console", Monaco, monospace;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,17 +22,29 @@ body {
   line-height: 1.7;
 }
 
-p {
-  margin-bottom: 22px;
-  color: #ccc;
-  font-size: 1rem;
-}
-
-.brand {
+.brand-line {
+  display: inline-block;
   font-size: 1.2em;
   font-weight: bold;
   color: #fff;
   letter-spacing: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #ff0000;
+  width: 0;
+  animation: brandTyping 1.8s steps(15, end) forwards, cursorStop 0.1s forwards 1.9s;
+}
+
+.body-text {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 2.2s;
+}
+
+p {
+  margin-bottom: 22px;
+  color: #ccc;
+  font-size: 1rem;
 }
 
 .tagline {
@@ -46,20 +58,41 @@ p {
   color: #ff0000;
 }
 
-/* MOBILE OPTIMIZATION */
+@keyframes brandTyping {
+  from {
+    width: 0;
+  }
+  to {
+    width: 15ch;
+  }
+}
+
+@keyframes cursorStop {
+  to {
+    border-right: none;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile */
 @media (max-width: 700px) {
   .container {
     padding: 40px 18px;
   }
 
+  .brand-line {
+    font-size: 1.05em;
+    letter-spacing: 2px;
+  }
+
   p {
     font-size: 0.95rem;
     line-height: 1.6;
-  }
-
-  .brand {
-    letter-spacing: 2px;
-    font-size: 1.1em;
   }
 
   .tagline {
@@ -77,12 +110,19 @@ p {
 <div class="container">
 
 <p>
-<span class="brand">CANNON KINETICS</span>: we develop modern weapon system components built around modularity, cross-compatibility, and the integrated control of mission-critical attachments. Our products and innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field — where precision, control, and rugged reliability are non-negotiable.
+<span class="brand-line">CANNON KINETICS</span>
+</p>
+
+<div class="body-text">
+
+<p>
+develops firearms components focused on cross-compatibility, modularity, and integrated control of mission-critical systems for modern weapon platforms. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.
 </p>
 
 <p>
 We design purely for function. Looking this good is just a byproduct.
 </p>
+
 <p class="tagline">
 <span class="red">EXPECT</span> PRECISION.<br>
 <span class="red">DEMAND</span> CONTROL.
@@ -90,6 +130,7 @@ We design purely for function. Looking this good is just a byproduct.
 
 </div>
 
+</div>
+
 </body>
 </html>
-
