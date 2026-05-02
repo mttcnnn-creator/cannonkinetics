@@ -9,7 +9,7 @@ body {
   margin: 0;
   background: #000;
   color: #fff;
-  font-family: "Lucida Console", Monaco, monospace;
+  font-family: "Courier New", Courier, monospace;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,22 +23,21 @@ body {
 }
 
 .brand-line {
-  display: inline-block;
   font-size: 1.2em;
   font-weight: bold;
-  color: #fff;
   letter-spacing: 3px;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #ff0000;
-  width: 0;
-  animation: brandTyping 1.8s steps(15, end) forwards, cursorStop 0.1s forwards 1.9s;
+  color: #fff;
+}
+
+.cursor {
+  color: #ff0000;
+  font-weight: bold;
+  animation: blink 0.8s steps(1) infinite;
 }
 
 .body-text {
   opacity: 0;
-  animation: fadeIn 0.8s ease forwards;
-  animation-delay: 2.2s;
+  transition: opacity 0.6s ease;
 }
 
 p {
@@ -58,25 +57,8 @@ p {
   color: #ff0000;
 }
 
-@keyframes brandTyping {
-  from {
-    width: 0;
-  }
-  to {
-    width: 15ch;
-  }
-}
-
-@keyframes cursorStop {
-  to {
-    border-right: none;
-  }
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
 /* Mobile */
@@ -110,10 +92,10 @@ p {
 <div class="container">
 
 <p>
-<span class="brand-line">CANNON KINETICS</span>
+<span id="brand" class="brand-line"></span>
 </p>
 
-<div class="body-text">
+<div id="body" class="body-text">
 
 <p>
 develops firearms components focused on cross-compatibility, modularity, and integrated control of mission-critical systems for modern weapon platforms. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.
@@ -131,6 +113,30 @@ We design purely for function. Looking this good is just a byproduct.
 </div>
 
 </div>
+
+<script>
+const text = "CANNON KINETICS";
+const target = document.getElementById("brand");
+const body = document.getElementById("body");
+
+let i = 0;
+const speed = 130; // 🔥 YOUR REQUESTED SPEED (ms per character)
+
+function typeWriter() {
+  if (i <= text.length) {
+    target.innerHTML = text.substring(0, i) + '<span class="cursor">|</span>';
+    i++;
+    setTimeout(typeWriter, speed);
+  } else {
+    target.innerHTML = text;
+    setTimeout(() => {
+      body.style.opacity = 1;
+    }, 300); // slight delay before text appears
+  }
+}
+
+window.onload = typeWriter;
+</script>
 
 </body>
 </html>
