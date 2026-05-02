@@ -1,209 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Company | Cannon Kinetics</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cannon Kinetics | Company</title>
 
 <style>
-html, body {
-width: 100%;
-overflow-x: hidden;
-}
-
 body {
-margin: 0;
-background: #000;
-color: #fff;
-font-family: "Courier New", Courier, monospace;
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-box-sizing: border-box;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: "Courier New", Courier, monospace;
+    overflow-x: hidden;
 }
 
 .container {
-width: 100%;
-max-width: 800px;
-padding: 50px 24px;
-line-height: 1.7;
-box-sizing: border-box;
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.brand-line {
-font-size: 1.2em;
-font-weight: bold;
-letter-spacing: 3px;
-color: #fff;
+h1 {
+    color: #ff0000;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.type-line {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
 }
 
 .cursor {
-color: #ff0000;
-font-weight: bold;
-animation: blink 0.8s steps(1) infinite;
-}
-
-.body-text {
-opacity: 0;
-transition: opacity 0.6s ease;
-}
-
-.body-text.show {
-opacity: 1;
-}
-
-p {
-margin-bottom: 22px;
-color: #ccc;
-font-size: 1rem;
-}
-
-.tagline {
-margin-top: 45px;
-letter-spacing: 3px;
-color: #fff;
-line-height: 1.5;
-min-height: 3em;
-}
-
-.red {
-color: #ff0000;
+    display: inline-block;
+    width: 10px;
+    background-color: #ff0000;
+    margin-left: 5px;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
-50% {
-opacity: 0;
-}
-}
-
-/* Mobile */
-@media (max-width: 700px) {
-body {
-align-items: flex-start;
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
 }
 
-.container {
-max-width: 100%;
-padding: 90px 22px 60px;
-line-height: 1.55;
+.nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
 }
 
-.brand-line {
-font-size: 1em;
-letter-spacing: 1.5px;
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
 }
 
-p {
-font-size: 0.9rem;
-line-height: 1.55;
-margin-bottom: 20px;
-}
-
-.tagline {
-letter-spacing: 1.5px;
-font-size: 0.9em;
-margin-top: 34px;
-line-height: 1.45;
-}
+.nav a:hover {
+    color: #ff0000;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<p>
-<span id="brand" class="brand-line"></span>
-</p>
-
-<div id="body" class="body-text">
-
-<p>
-We develop firearms components focused on cross-compatibility, modularity, and integrated control and management of mission-critical attachments. Our innovations are driven by the demands of serious shooters, law enforcement, and military operators in the field, where precision, control, and rugged reliability are non-negotiable.
-</p>
-
-<p class="tagline">
-<span id="expect-line"></span><br>
-<span id="demand-line"></span>
-</p>
-
+<div class="nav">
+    <a href="index.html">HOME</a>
+    <a href="company.html">COMPANY</a>
+    <a href="contact.html">INQUIRIES</a>
 </div>
 
+<div class="container">
+    <h1>CANNON KINETICS</h1>
+
+    <div id="text"></div>
 </div>
 
 <script>
-const brandText = "CANNON KINETICS";
-const expectText = "EXPECT PRECISION.";
-const demandText = "DEMAND CONTROL.";
+const lines = [
+"We develop firearm components focused on modularity and integrated management of support gear and controls.",
+"Our designs are shaped by the demands of serious shooters, law enforcement, and military personnel in the field — where precision, control, and reliability are required.",
+"",
+"Form follows function.",
+"Demand control."
+];
 
-const brandTarget = document.getElementById("brand");
-const body = document.getElementById("body");
-const expectTarget = document.getElementById("expect-line");
-const demandTarget = document.getElementById("demand-line");
+let index = 0;
+let charIndex = 0;
+const speed = 25;
 
-let brandIndex = 0;
-const speed = 130;
+function typeLine() {
+    if (index >= lines.length) {
+        document.getElementById("text").innerHTML += '<span class="cursor"></span>';
+        return;
+    }
 
-function typeBrand() {
-if (brandIndex <= brandText.length) {
-brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">█</span>';
-brandIndex++;
-setTimeout(typeBrand, speed);
-} else {
-brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
+    const currentLine = lines[index];
+    const container = document.getElementById("text");
 
-setTimeout(function() {
-body.classList.add("show");
-}, 1000);
+    if (charIndex < currentLine.length) {
+        if (!container.lastChild || container.lastChild.className !== "type-line") {
+            const newLine = document.createElement("div");
+            newLine.className = "type-line";
+            container.appendChild(newLine);
+        }
 
-setTimeout(startExpect, 10000);
-setTimeout(startDemand, 13000);
-}
-}
-
-function removeBrandCursor() {
-const cursor = document.getElementById("brand-cursor");
-if (cursor) cursor.remove();
-}
-
-function startExpect() {
-removeBrandCursor();
-
-let i = 0;
-
-function type() {
-if (i <= expectText.length) {
-const current = expectText.substring(0, i).replace("EXPECT", '<span class="red">EXPECT</span>');
-expectTarget.innerHTML = current + '<span class="cursor">█</span>';
-i++;
-setTimeout(type, speed);
-} else {
-expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
-}
+        container.lastChild.textContent += currentLine.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLine, speed);
+    } else {
+        charIndex = 0;
+        index++;
+        setTimeout(typeLine, 400);
+    }
 }
 
-type();
-}
-
-function startDemand() {
-let i = 0;
-
-function type() {
-if (i <= demandText.length) {
-const current = demandText.substring(0, i).replace("DEMAND", '<span class="red">DEMAND</span>');
-demandTarget.innerHTML = current + '<span class="cursor">█</span>';
-i++;
-setTimeout(type, speed);
-} else {
-demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>') + '<span class="cursor">█</span>';
-}
-}
-
-type();
-}
-
-window.onload = typeBrand;
+typeLine();
 </script>
 
 </body>
