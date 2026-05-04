@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>EMAIL US FOR MORE INFORMATION</title>
+<title>CONTACT US FOR MORE INFORMATION</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -30,7 +30,7 @@ letter-spacing: 4px;
 margin-bottom: 20px;
 color: #ff0000;
 opacity: 0;
-transform: scale(2.4) rotate(-18deg);
+transform: scale(2.4); /* removed rotation */
 animation: stampIn 0.28s cubic-bezier(.2, 1.4, .4, 1) forwards;
 }
 
@@ -58,17 +58,17 @@ animation: blink 0.8s steps(1) infinite;
 @keyframes stampIn {
 0% {
 opacity: 0;
-transform: scale(2.4) rotate(-18deg);
+transform: scale(2.4); /* removed rotation */
 }
 
 70% {
 opacity: 1;
-transform: scale(0.92) rotate(4deg);
+transform: scale(0.92); /* removed rotation */
 }
 
 100% {
 opacity: 1;
-transform: scale(1) rotate(-3deg);
+transform: scale(1); /* removed rotation */
 }
 }
 
@@ -96,7 +96,7 @@ letter-spacing: 1px;
 <body>
 
 <div class="container">
-<h1>EMAIL US FOR MORE INFORMATION</h1>
+<h1>CONTACT US FOR MORE INFORMATION</h1>
 
 <a class="email-link" href="mailto:control@cannonkinetics.com" id="email-link"></a>
 </div>
