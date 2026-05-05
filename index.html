@@ -15,7 +15,7 @@ position: relative;
 overflow: hidden;
 }
 
-/* 🔥 FADE-IN WRAPPER */
+/* FADE-IN WRAPPER */
 .intro {
 opacity: 0;
 animation: fadeInIntro 1s ease forwards;
@@ -23,10 +23,6 @@ animation: fadeInIntro 1s ease forwards;
 
 @keyframes fadeInIntro {
 to { opacity: 1; }
-}
-
-body.shake {
-animation: screenShake 0.14s linear;
 }
 
 .container {
@@ -124,37 +120,8 @@ animation: blink 0.9s steps(1) infinite;
 color: #ff0000;
 }
 
-.bullet-hole {
-position: fixed;
-width: 78px;
-opacity: 0;
-pointer-events: none;
-z-index: 999999;
-transform: translate(-50%, -50%) scale(0.4) rotate(var(--rotation));
-animation: impact 0.18s ease-out forwards;
-}
-
-@keyframes impact {
-0% {
-opacity: 0;
-transform: translate(-50%, -50%) scale(0.3) rotate(var(--rotation));
-}
-100% {
-opacity: 1;
-transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
-}
-}
-
 @keyframes blink {
 50% { opacity: 0; }
-}
-
-@keyframes screenShake {
-0% { transform: translate(0, 0); }
-25% { transform: translate(-2px, 1px); }
-50% { transform: translate(2px, -1px); }
-75% { transform: translate(-1px, -2px); }
-100% { transform: translate(0, 0); }
 }
 
 /* Mobile */
@@ -163,13 +130,16 @@ h1 {
 font-size: 2em;
 letter-spacing: 5px;
 }
+
 .tagline {
 font-size: 0.85em;
 letter-spacing: 1px;
 }
+
 .logo {
 width: 210px;
 }
+
 .button {
 font-size: 0.95em;
 padding: 12px 28px;
@@ -205,9 +175,8 @@ const button = document.getElementById("coming-soon-button");
 let taglineIndex = 0;
 let companyIndex = 0;
 
-const typeSpeed = 130;
-const bulletDelay = 150;
-const bulletCount = 7;
+// Original was 130. This is 100% faster.
+const typeSpeed = 65;
 
 function formatTagline(text) {
 return text
@@ -235,49 +204,11 @@ companyIndex++;
 setTimeout(typeCompany, typeSpeed);
 } else {
 companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
-setTimeout(startBullets, 1200);
+setTimeout(() => button.classList.add("show"), 1200);
 }
 }
 
-function shake() {
-document.body.classList.remove("shake");
-void document.body.offsetWidth;
-document.body.classList.add("shake");
-}
-
-function startBullets() {
-const w = window.innerWidth;
-const h = window.innerHeight;
-
-for (let i = 0; i < bulletCount; i++) {
-setTimeout(() => {
-const hole = document.createElement("img");
-hole.src = "bullet-hole.png";
-hole.className = "bullet-hole";
-
-const x = w * (0.88 - (0.76 * (i / (bulletCount - 1))));
-const y = h * 0.34 + (Math.random() * 180 - 90);
-
-hole.style.left = x + "px";
-hole.style.top = y + "px";
-hole.style.setProperty("--rotation", (Math.random()*90-45)+"deg");
-
-document.body.appendChild(hole);
-shake();
-
-if (i === bulletCount - 1) {
-setTimeout(() => button.classList.add("show"), 300);
-}
-}, i * bulletDelay);
-}
-}
-
-/* ⏱️ WAIT FOR FADE-IN TO COMPLETE */
-window.onload = function() {
-setTimeout(() => {
-setTimeout(typeTagline, 1000);
-}, 1000);
-};
+window.onload = typeTagline;
 </script>
 
 </body>
