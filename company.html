@@ -84,9 +84,7 @@ p {
 }
 
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+  50% { opacity: 0; }
 }
 
 @media (max-width: 700px) {
@@ -176,8 +174,7 @@ function typeBrand() {
       body.classList.add("show");
     }, 1000);
 
-    setTimeout(startExpect, 8000);
-    setTimeout(startDemand, 8750);
+    setTimeout(startExpect, 8000); // START AT 8s
   }
 }
 
@@ -199,6 +196,9 @@ function startExpect() {
       setTimeout(type, speed);
     } else {
       expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
+      
+      // 🔥 THIS IS THE FIX — WAIT 0.25s AFTER FULL LINE TYPES
+      setTimeout(startDemand, 250);
     }
   }
 
