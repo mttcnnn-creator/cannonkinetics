@@ -40,9 +40,10 @@ body {
 }
 
 .brand-line {
-  font-size: 1.2em;
-  font-weight: bold;
-  letter-spacing: 3px;
+  font-family: Arial, sans-serif;
+  font-size: 5.32em;
+  letter-spacing: 12px;
+  font-weight: 800;
   color: #fff;
 }
 
@@ -84,7 +85,9 @@ p {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 700px) {
@@ -104,8 +107,8 @@ p {
   }
 
   .brand-line {
-    font-size: 1em;
-    letter-spacing: 1.5px;
+    font-size: 2.8em;
+    letter-spacing: 5px;
   }
 
   p {
@@ -174,7 +177,7 @@ function typeBrand() {
       body.classList.add("show");
     }, 1000);
 
-    setTimeout(startExpect, 8000); // START AT 8s
+    setTimeout(startExpect, 8000);
   }
 }
 
@@ -196,8 +199,6 @@ function startExpect() {
       setTimeout(type, speed);
     } else {
       expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
-      
-      // 🔥 THIS IS THE FIX — WAIT 0.25s AFTER FULL LINE TYPES
       setTimeout(startDemand, 250);
     }
   }
