@@ -1,167 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Cannon Kinetics</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-margin: 0;
-background: #050505;
-color: #fff;
-font-family: Arial, sans-serif;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-
-.intro {
-opacity: 0;
-animation: fadeInIntro 1s ease forwards;
-}
-
-@keyframes fadeInIntro {
-to { opacity: 1; }
-}
-
-.container {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 40px 20px 80px;
-box-sizing: border-box;
-position: relative;
-z-index: 10;
-}
-
-.logo {
-width: 300px;
-max-width: 80%;
-margin-bottom: 30px;
-filter: invert(1) brightness(2);
-}
-
-h1 {
-margin: 0;
-font-size: 3.8em;
-letter-spacing: 12px;
-font-weight: 800;
-}
-
-.tagline {
-margin-top: 25px;
-font-size: 1.4em;
-letter-spacing: 4px;
-color: #b8b8b8;
-font-family: "Courier New", Courier, monospace;
-min-height: 1.6em;
-}
-
-.red {
-color: #ff0000;
-transition: color 0.2s ease;
-}
-
-.red:hover {
-color: #ffffff;
-}
-
-.cursor {
-color: #ff0000;
-font-weight: bold;
-animation: blink 0.8s steps(1) infinite;
-}
-
-.button {
-display: inline-block;
-margin-top: 50px;
-padding: 16px 55px;
-border: 2px solid #fff;
-text-decoration: none;
-color: #fff;
-font-size: 1.2em;
-letter-spacing: 5px;
-font-weight: bold;
-opacity: 0;
-transition: opacity 0.8s ease;
-pointer-events: none;
-}
-
-.button.show {
-opacity: 1;
-pointer-events: auto;
-}
-
-.company-link {
-position: fixed;
-bottom: 25px;
-left: 50%;
-transform: translateX(-50%);
-font-size: 1em;
-letter-spacing: 5px;
-font-weight: bold;
-color: #cc0000;
-text-decoration: none;
-white-space: nowrap;
-z-index: 100;
-}
-
-.company-cursor {
-color: #ffffff;
-font-weight: bold;
-margin-left: 2px;
-animation: blink 0.9s steps(1) infinite;
-}
-
-.company-link:hover {
-color: #ff0000;
-}
-
-@keyframes blink {
-50% { opacity: 0; }
-}
-
-@media (max-width: 700px) {
-h1 {
-font-size: 2em;
-letter-spacing: 5px;
-}
-
-.tagline {
-font-size: 0.85em;
-letter-spacing: 1px;
-}
-
-.logo {
-width: 210px;
-}
-
-.button {
-font-size: 0.95em;
-padding: 12px 28px;
-}
-}
-</style>
-</head>
-
-<body>
-
-<div class="container intro">
-
-<img src="Cannon (9).png" class="logo">
-
-<h1>CANNON KINETICS</h1>
-
-<div class="tagline" id="tagline"></div>
-
-<a href="patience.html" class="button" id="coming-soon-button">COMING SOON</a>
-
-</div>
-
-<a href="company.html" class="company-link" id="company-link"></a>
-
 <script>
 const taglinePartOne = "EXPECT Precision.";
 const taglinePartTwo = " DEMAND Control.";
@@ -176,7 +12,7 @@ let partTwoIndex = 0;
 let companyIndex = 0;
 
 const typeSpeed = 65;
-const startDelay = 500;
+const startDelay = 1000;
 const secondLineDelay = 500;
 
 function formatTagline(text) {
@@ -188,11 +24,11 @@ return text
 function typePartOne() {
 if (partOneIndex <= taglinePartOne.length) {
 const current = taglinePartOne.substring(0, partOneIndex);
-tagline.innerHTML = formatTagline(current) + '<span class="cursor">|</span>';
+tagline.innerHTML = formatTagline(current) + '<span class="cursor">█</span>';
 partOneIndex++;
 setTimeout(typePartOne, typeSpeed);
 } else {
-tagline.innerHTML = formatTagline(taglinePartOne) + '<span class="cursor">|</span>';
+tagline.innerHTML = formatTagline(taglinePartOne) + '<span class="cursor">█</span>';
 setTimeout(typePartTwo, secondLineDelay);
 }
 }
@@ -200,7 +36,7 @@ setTimeout(typePartTwo, secondLineDelay);
 function typePartTwo() {
 if (partTwoIndex <= taglinePartTwo.length) {
 const current = taglinePartOne + taglinePartTwo.substring(0, partTwoIndex);
-tagline.innerHTML = formatTagline(current) + '<span class="cursor">|</span>';
+tagline.innerHTML = formatTagline(current) + '<span class="cursor">█</span>';
 partTwoIndex++;
 setTimeout(typePartTwo, typeSpeed);
 } else {
@@ -221,10 +57,7 @@ setTimeout(() => button.classList.add("show"), 1200);
 }
 }
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
 setTimeout(typePartOne, startDelay);
-};
+});
 </script>
-
-</body>
-</html>
