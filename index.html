@@ -15,7 +15,6 @@ position: relative;
 overflow: hidden;
 }
 
-/* FADE-IN WRAPPER */
 .intro {
 opacity: 0;
 animation: fadeInIntro 1s ease forwards;
@@ -124,7 +123,6 @@ color: #ff0000;
 50% { opacity: 0; }
 }
 
-/* Mobile */
 @media (max-width: 700px) {
 h1 {
 font-size: 2em;
@@ -175,7 +173,6 @@ const button = document.getElementById("coming-soon-button");
 let taglineIndex = 0;
 let companyIndex = 0;
 
-// Original was 130. This is 100% faster.
 const typeSpeed = 65;
 
 function formatTagline(text) {
