@@ -28,20 +28,15 @@ body {
   padding: 50px 24px;
   line-height: 1.7;
   box-sizing: border-box;
-  text-align: left;
+  text-align: center;
 }
 
 .logo {
   display: block;
   width: 75px;
-  max-width: 25%;
   margin: 0 auto 22px;
   filter: invert(1) brightness(2);
   opacity: 0.85;
-}
-
-.brand-wrap {
-  text-align: center;
 }
 
 .brand-line {
@@ -70,6 +65,9 @@ p {
   margin-bottom: 22px;
   color: #ccc;
   font-size: 1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tagline {
@@ -78,6 +76,7 @@ p {
   color: #fff;
   line-height: 1.5;
   min-height: 3em;
+  text-align: center;
 }
 
 .red {
@@ -133,7 +132,7 @@ p {
 
 <img src="Cannon (9).png" class="logo">
 
-<p class="brand-wrap">
+<p>
 <span id="brand" class="brand-line"></span>
 </p>
 
@@ -178,7 +177,7 @@ function typeBrand() {
     }, 1000);
 
     setTimeout(startExpect, 8000);
-    setTimeout(startDemand, 11000);
+    setTimeout(startDemand, 8750);
   }
 }
 
