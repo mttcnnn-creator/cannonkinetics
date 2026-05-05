@@ -28,6 +28,20 @@ body {
   padding: 50px 24px;
   line-height: 1.7;
   box-sizing: border-box;
+  text-align: left;
+}
+
+.logo {
+  display: block;
+  width: 75px;
+  max-width: 25%;
+  margin: 0 auto 22px;
+  filter: invert(1) brightness(2);
+  opacity: 0.85;
+}
+
+.brand-wrap {
+  text-align: center;
 }
 
 .brand-line {
@@ -83,8 +97,13 @@ p {
 
   .container {
     max-width: 100%;
-    padding: 90px 22px 60px;
+    padding: 70px 22px 60px;
     line-height: 1.55;
+  }
+
+  .logo {
+    width: 60px;
+    margin-bottom: 18px;
   }
 
   .brand-line {
@@ -112,7 +131,9 @@ p {
 
 <div class="container">
 
-<p>
+<img src="Cannon (9).png" class="logo">
+
+<p class="brand-wrap">
 <span id="brand" class="brand-line"></span>
 </p>
 
@@ -142,9 +163,7 @@ const expectTarget = document.getElementById("expect-line");
 const demandTarget = document.getElementById("demand-line");
 
 let brandIndex = 0;
-
-// 25% faster than 130 → ~98ms
-const speed = 98;
+const speed = 65;
 
 function typeBrand() {
   if (brandIndex <= brandText.length) {
@@ -158,8 +177,8 @@ function typeBrand() {
       body.classList.add("show");
     }, 1000);
 
-    setTimeout(startExpect, 10000);
-    setTimeout(startDemand, 13000);
+    setTimeout(startExpect, 8000);
+    setTimeout(startDemand, 11000);
   }
 }
 
