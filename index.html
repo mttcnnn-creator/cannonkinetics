@@ -163,17 +163,21 @@ padding: 12px 28px;
 <a href="company.html" class="company-link" id="company-link"></a>
 
 <script>
-const taglineText = "EXPECT Precision. DEMAND Control.";
+const taglinePartOne = "EXPECT Precision.";
+const taglinePartTwo = " DEMAND Control.";
 const companyText = "COMPANY";
 
 const tagline = document.getElementById("tagline");
 const companyLink = document.getElementById("company-link");
 const button = document.getElementById("coming-soon-button");
 
-let taglineIndex = 0;
+let partOneIndex = 0;
+let partTwoIndex = 0;
 let companyIndex = 0;
 
 const typeSpeed = 65;
+const startDelay = 500;
+const secondLineDelay = 500;
 
 function formatTagline(text) {
 return text
@@ -181,14 +185,26 @@ return text
 .replace("DEMAND", '<span class="red">DEMAND</span>');
 }
 
-function typeTagline() {
-if (taglineIndex <= taglineText.length) {
-const current = taglineText.substring(0, taglineIndex);
+function typePartOne() {
+if (partOneIndex <= taglinePartOne.length) {
+const current = taglinePartOne.substring(0, partOneIndex);
 tagline.innerHTML = formatTagline(current) + '<span class="cursor">|</span>';
-taglineIndex++;
-setTimeout(typeTagline, typeSpeed);
+partOneIndex++;
+setTimeout(typePartOne, typeSpeed);
 } else {
-tagline.innerHTML = formatTagline(taglineText);
+tagline.innerHTML = formatTagline(taglinePartOne) + '<span class="cursor">|</span>';
+setTimeout(typePartTwo, secondLineDelay);
+}
+}
+
+function typePartTwo() {
+if (partTwoIndex <= taglinePartTwo.length) {
+const current = taglinePartOne + taglinePartTwo.substring(0, partTwoIndex);
+tagline.innerHTML = formatTagline(current) + '<span class="cursor">|</span>';
+partTwoIndex++;
+setTimeout(typePartTwo, typeSpeed);
+} else {
+tagline.innerHTML = formatTagline(taglinePartOne + taglinePartTwo);
 setTimeout(typeCompany, 400);
 }
 }
@@ -205,7 +221,9 @@ setTimeout(() => button.classList.add("show"), 1200);
 }
 }
 
-window.onload = typeTagline;
+window.onload = () => {
+setTimeout(typePartOne, startDelay);
+};
 </script>
 
 </body>
