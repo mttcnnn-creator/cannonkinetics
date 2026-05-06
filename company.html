@@ -1,253 +1,283 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-<title>Cannon Kinetics</title>
+<title>Company | Cannon Kinetics</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
-margin: 0;
-background: #050505;
-color: #fff;
-font-family: Arial, sans-serif;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-
-.intro {
-opacity: 0;
-animation: fadeInIntro 1s ease forwards;
-}
-
-@keyframes fadeInIntro {
-to { opacity: 1; }
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .container {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 40px 20px 80px;
-box-sizing: border-box;
-position: relative;
-z-index: 10;
-overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  padding: 50px 24px;
+  line-height: 1.7;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .logo {
-width: 300px;
-max-width: 80%;
-margin-bottom: 30px;
-filter: invert(1) brightness(2);
+  display: block;
+  width: 75px;
+  margin: 0 auto 22px;
+  filter: invert(1) brightness(2);
+  opacity: 0.85;
 }
 
-h1 {
-margin: 0;
-font-size: 2.85em;
-letter-spacing: 12px;
-font-weight: 800;
-white-space: nowrap;
-max-width: 100%;
-overflow: hidden;
-}
-
-.tagline {
-margin-top: 25px;
-font-size: 1.4em;
-letter-spacing: 4px;
-color: #b8b8b8;
-font-family: "Courier New", Courier, monospace;
-min-height: 1.6em;
-font-weight: 700;
-}
-
-.red {
-color: #ff0000;
-transition: color 0.2s ease;
-}
-
-.red:hover {
-color: #ffffff;
+.brand-line {
+  font-family: Arial, sans-serif;
+  font-size: 1.35em;
+  letter-spacing: 5px;
+  font-weight: 800;
+  color: #fff;
 }
 
 .cursor {
-color: #ff0000;
-font-weight: bold;
-animation: blink 0.8s steps(1) infinite;
+  color: #ff0000;
+  font-weight: bold;
+  animation: blink 0.8s steps(1) infinite;
 }
 
-/* CONTACT BUTTON REDUCED ~25% DESKTOP */
-.button {
-display: inline-block;
-margin-top: 42px;
-padding: 12px 42px;
-border: 2px solid #fff;
-text-decoration: none;
-color: #fff;
-font-size: 0.95em;
-letter-spacing: 4px;
-font-weight: bold;
-opacity: 0;
-transition: opacity 0.8s ease;
-pointer-events: none;
+.body-text {
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
-.button.show {
-opacity: 1;
-pointer-events: auto;
+.body-text.show {
+  opacity: 1;
 }
 
-/* DESKTOP COMPANY INFO */
-.company-link {
-position: fixed;
-bottom: 25px;
-left: 50%;
-transform: translateX(-50%);
-font-size: 0.8em;
-letter-spacing: 5px;
-font-weight: bold;
-color: #cc0000;
-text-decoration: none;
-white-space: nowrap;
-z-index: 100;
+p {
+  margin-bottom: 22px;
+  color: #ccc;
+  font-size: 1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.company-cursor {
-color: #ffffff;
-font-weight: bold;
-margin-left: 2px;
-animation: blink 0.9s steps(1) infinite;
+.tagline {
+  margin-top: 45px;
+  letter-spacing: 3px;
+  color: #fff;
+  line-height: 1.5;
+  min-height: 3em;
+  text-align: center;
 }
 
-.company-link:hover {
-color: #ff0000;
+.red {
+  color: #ff0000;
+}
+
+/* FIXED BOTTOM NAV LINKS */
+.bottom-links {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 95px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+.bottom-links.show {
+  opacity: 1;
+}
+
+.bottom-links a {
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.bottom-links a:hover {
+  color: #ccc;
 }
 
 @keyframes blink {
-50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 700px) {
 
-.container {
-transform: translateY(-10vh);
-}
+  /* MOVE CONTENT DOWNWARD SLIGHTLY ON MOBILE */
+  .container {
+    max-width: 100%;
+    padding: 70px 22px 60px;
+    line-height: 1.55;
+    transform: translateY(20vh);
+  }
 
-h1 {
-font-size: 1.5em;
-letter-spacing: 3px;
-white-space: nowrap;
-max-width: 100%;
-overflow: hidden;
-}
+  .logo {
+    width: 60px;
+    margin-bottom: 18px;
+  }
 
-.tagline {
-font-size: 0.85em;
-letter-spacing: 1px;
-}
+  .brand-line {
+    font-size: 1.0em;
+    letter-spacing: 2.5px;
+  }
 
-.logo {
-width: 158px;
-}
+  p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
 
-/* CONTACT BUTTON REDUCED ~50% MOBILE */
-.button {
-font-size: 0.6em;
-padding: 8px 18px;
-letter-spacing: 2px;
-margin-top: 32px;
-}
+  .tagline {
+    letter-spacing: 1.5px;
+    font-size: 0.9em;
+    margin-top: 34px;
+    line-height: 1.45;
+  }
 
-/* COMPANY INFO REDUCED ~50% MOBILE + REMOVE BOLD */
-.company-link {
-font-size: 0.5em;
-font-weight: normal;
-letter-spacing: 3px;
-bottom: 18px;
-}
+  /* MOBILE NAV */
+  .bottom-links {
+    bottom: 18px;
+    gap: 52px;
+  }
+
+  .bottom-links a {
+    font-size: 0.5em;
+    font-weight: normal;
+    letter-spacing: 3px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container intro">
+<div class="container">
 
 <img src="Cannon (9).png" class="logo">
 
-<h1>CANNON KINETICS</h1>
+<p>
+<span id="brand" class="brand-line"></span>
+</p>
 
-<div class="tagline" id="tagline"></div>
+<div id="body" class="body-text">
 
-<a href="patience.html" class="button" id="coming-soon-button">CONTACT US</a>
+<p>
+We develop firearm components focused on modularity and integrated management of support gear and controls. Our designs are shaped by the demands of serious shooters, law enforcement, and military personnel in the field — where precision, control, and reliability are required.
+</p>
+
+<p class="tagline">
+<span id="expect-line"></span><br>
+<span id="demand-line"></span>
+</p>
 
 </div>
 
-<a href="company.html" class="company-link" id="company-link"></a>
+</div>
+
+<div class="bottom-links" id="bottom-links">
+  <a href="index.html">HOME</a>
+  <a href="patience.html">CONTACT US</a>
+</div>
 
 <script>
-const taglinePartOne = "EXPECT Precision.";
-const taglinePartTwo = " DEMAND Control.";
-const companyText = "COMPANY INFO";
+const brandText = "CANNON KINETICS";
+const expectText = "EXPECT PRECISION.";
+const demandText = "DEMAND CONTROL.";
 
-const tagline = document.getElementById("tagline");
-const companyLink = document.getElementById("company-link");
-const button = document.getElementById("coming-soon-button");
+const brandTarget = document.getElementById("brand");
+const body = document.getElementById("body");
+const expectTarget = document.getElementById("expect-line");
+const demandTarget = document.getElementById("demand-line");
+const bottomLinks = document.getElementById("bottom-links");
 
-let partOneIndex = 0;
-let partTwoIndex = 0;
-let companyIndex = 0;
+let brandIndex = 0;
+const speed = 65;
 
-const typeSpeed = 49;
-const startDelay = 1500;
-const secondPartDelay = 250;
+function typeBrand() {
+  if (brandIndex <= brandText.length) {
+    brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">█</span>';
+    brandIndex++;
+    setTimeout(typeBrand, speed);
+  } else {
+    brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
 
-function formatTagline(text) {
-return text
-.replace("EXPECT", '<span class="red">EXPECT</span>')
-.replace("DEMAND", '<span class="red">DEMAND</span>');
+    setTimeout(function() {
+      body.classList.add("show");
+    }, 1000);
+
+    setTimeout(startExpect, 8000);
+  }
 }
 
-function typePartOne() {
-if (partOneIndex <= taglinePartOne.length) {
-const current = taglinePartOne.substring(0, partOneIndex);
-tagline.innerHTML = formatTagline(current) + '<span class="cursor">█</span>';
-partOneIndex++;
-setTimeout(typePartOne, typeSpeed);
-} else {
-tagline.innerHTML = formatTagline(taglinePartOne) + '<span class="cursor">█</span>';
-setTimeout(typePartTwo, secondPartDelay);
-}
+function removeBrandCursor() {
+  const cursor = document.getElementById("brand-cursor");
+  if (cursor) cursor.remove();
 }
 
-function typePartTwo() {
-if (partTwoIndex <= taglinePartTwo.length) {
-const current = taglinePartOne + taglinePartTwo.substring(0, partTwoIndex);
-tagline.innerHTML = formatTagline(current) + '<span class="cursor">█</span>';
-partTwoIndex++;
-setTimeout(typePartTwo, typeSpeed);
-} else {
-tagline.innerHTML = formatTagline(taglinePartOne + taglinePartTwo);
-setTimeout(typeCompany, 400);
-}
+function startExpect() {
+  removeBrandCursor();
+
+  let i = 0;
+
+  function type() {
+    if (i <= expectText.length) {
+      const current = expectText.substring(0, i).replace("EXPECT", '<span class="red">EXPECT</span>');
+      expectTarget.innerHTML = current + '<span class="cursor">█</span>';
+      i++;
+      setTimeout(type, speed);
+    } else {
+      expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
+      setTimeout(startDemand, 250);
+    }
+  }
+
+  type();
 }
 
-function typeCompany() {
-if (companyIndex <= companyText.length) {
-const current = companyText.substring(0, companyIndex);
-companyLink.innerHTML = current + '<span class="company-cursor">█</span>';
-companyIndex++;
-setTimeout(typeCompany, typeSpeed);
-} else {
-companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
-setTimeout(() => button.classList.add("show"), 1200);
-}
+function startDemand() {
+  let i = 0;
+
+  function type() {
+    if (i <= demandText.length) {
+      const current = demandText.substring(0, i).replace("DEMAND", '<span class="red">DEMAND</span>');
+      demandTarget.innerHTML = current + '<span class="cursor">█</span>';
+      i++;
+      setTimeout(type, speed);
+    } else {
+      demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>') + '<span class="cursor">█</span>';
+
+      setTimeout(() => {
+        bottomLinks.classList.add("show");
+      }, 1000);
+    }
+  }
+
+  type();
 }
 
-setTimeout(typePartOne, startDelay);
+window.onload = typeBrand;
 </script>
 
 </body>
