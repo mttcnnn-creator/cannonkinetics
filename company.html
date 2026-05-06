@@ -84,6 +84,38 @@ p {
   color: #ff0000;
 }
 
+.bottom-links {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 95px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+.bottom-links.show {
+  opacity: 1;
+}
+
+.bottom-links a {
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.bottom-links a:hover {
+  color: #ccc;
+}
+
 @keyframes blink {
   50% {
     opacity: 0;
@@ -123,6 +155,17 @@ p {
     margin-top: 34px;
     line-height: 1.45;
   }
+
+  .bottom-links {
+    bottom: 18px;
+    gap: 52px;
+  }
+
+  .bottom-links a {
+    font-size: 0.5em;
+    font-weight: normal;
+    letter-spacing: 3px;
+  }
 }
 </style>
 </head>
@@ -152,6 +195,11 @@ We develop firearm components focused on modularity and integrated management of
 
 </div>
 
+<div class="bottom-links" id="bottom-links">
+  <a href="index.html">HOME</a>
+  <a href="patience.html">CONTACT US</a>
+</div>
+
 <script>
 const brandText = "CANNON KINETICS";
 const expectText = "EXPECT PRECISION.";
@@ -161,6 +209,7 @@ const brandTarget = document.getElementById("brand");
 const body = document.getElementById("body");
 const expectTarget = document.getElementById("expect-line");
 const demandTarget = document.getElementById("demand-line");
+const bottomLinks = document.getElementById("bottom-links");
 
 let brandIndex = 0;
 const speed = 65;
@@ -217,6 +266,10 @@ function startDemand() {
       setTimeout(type, speed);
     } else {
       demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>') + '<span class="cursor">█</span>';
+
+      setTimeout(() => {
+        bottomLinks.classList.add("show");
+      }, 1000);
     }
   }
 
