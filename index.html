@@ -34,6 +34,7 @@ padding: 40px 20px 80px;
 box-sizing: border-box;
 position: relative;
 z-index: 10;
+overflow: hidden;
 }
 
 .logo {
@@ -45,9 +46,12 @@ filter: invert(1) brightness(2);
 
 h1 {
 margin: 0;
-font-size: 3.8em;
+font-size: 2.85em;
 letter-spacing: 12px;
 font-weight: 800;
+white-space: nowrap;
+max-width: 100%;
+overflow: hidden;
 }
 
 .tagline {
@@ -100,7 +104,7 @@ position: fixed;
 bottom: 25px;
 left: 50%;
 transform: translateX(-50%);
-font-size: 1em;
+font-size: 0.8em;
 letter-spacing: 5px;
 font-weight: bold;
 color: #cc0000;
@@ -126,8 +130,11 @@ color: #ff0000;
 
 @media (max-width: 700px) {
 h1 {
-font-size: 2em;
-letter-spacing: 5px;
+font-size: 1.5em;
+letter-spacing: 3px;
+white-space: nowrap;
+max-width: 100%;
+overflow: hidden;
 }
 
 .tagline {
@@ -136,12 +143,16 @@ letter-spacing: 1px;
 }
 
 .logo {
-width: 210px;
+width: 158px;
 }
 
 .button {
 font-size: 0.95em;
 padding: 12px 28px;
+}
+
+.company-link {
+font-size: 1em;
 }
 }
 </style>
@@ -166,7 +177,7 @@ padding: 12px 28px;
 <script>
 const taglinePartOne = "EXPECT Precision.";
 const taglinePartTwo = " DEMAND Control.";
-const companyText = "COMPANY";
+const companyText = "COMPANY INFO";
 
 const tagline = document.getElementById("tagline");
 const companyLink = document.getElementById("company-link");
