@@ -1,283 +1,190 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Company | Cannon Kinetics</title>
+<title>Cannon Kinetics</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-html, body {
-  width: 100%;
-  overflow-x: hidden;
+body {
+margin: 0;
+background: #050505;
+color: #fff;
+font-family: Arial, sans-serif;
+text-align: center;
+position: relative;
+overflow: hidden;
 }
 
-body {
-  margin: 0;
-  background: #000;
-  color: #fff;
-  font-family: "Courier New", Courier, monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
+.intro {
+opacity: 0;
+animation: fadeInIntro 1s ease forwards;
+}
+
+@keyframes fadeInIntro {
+to { opacity: 1; }
 }
 
 .container {
-  width: 100%;
-  max-width: 800px;
-  padding: 50px 24px;
-  line-height: 1.7;
-  box-sizing: border-box;
-  text-align: center;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 40px 20px 80px;
+box-sizing: border-box;
+position: relative;
+z-index: 10;
 }
 
 .logo {
-  display: block;
-  width: 75px;
-  margin: 0 auto 22px;
-  filter: invert(1) brightness(2);
-  opacity: 0.85;
+width: 300px;
+max-width: 80%;
+margin-bottom: 30px;
+filter: invert(1) brightness(2);
 }
 
-.brand-line {
-  font-family: Arial, sans-serif;
-  font-size: 1.35em;
-  letter-spacing: 5px;
-  font-weight: 800;
-  color: #fff;
+.company-text {
+max-width: 780px;
+font-size: 20px;
+line-height: 1.55;
+letter-spacing: 0.5px;
+opacity: 0;
+animation: fadeInText 1.5s ease forwards;
+animation-delay: 1.2s;
 }
 
-.cursor {
-  color: #ff0000;
-  font-weight: bold;
-  animation: blink 0.8s steps(1) infinite;
-}
-
-.body-text {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.body-text.show {
-  opacity: 1;
-}
-
-p {
-  margin-bottom: 22px;
-  color: #ccc;
-  font-size: 1rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+@keyframes fadeInText {
+to { opacity: 1; }
 }
 
 .tagline {
-  margin-top: 45px;
-  letter-spacing: 3px;
-  color: #fff;
-  line-height: 1.5;
-  min-height: 3em;
-  text-align: center;
+font-family: "Courier New", monospace;
+font-size: 26px;
+letter-spacing: 2px;
+margin-top: 34px;
+color: #fff;
+white-space: nowrap;
+overflow: hidden;
+border-right: 3px solid #b00000;
+width: 0;
+animation: typing 2.4s steps(14, end) forwards, blinkCursor 0.75s step-end infinite;
+animation-delay: 10s, 10s;
 }
 
-.red {
-  color: #ff0000;
+@keyframes typing {
+from { width: 0; }
+to { width: 14ch; }
+}
+
+@keyframes blinkCursor {
+50% { border-color: transparent; }
 }
 
 .bottom-links {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 95px;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  z-index: 100;
-  white-space: nowrap;
-}
-
-.bottom-links.show {
-  opacity: 1;
+position: fixed;
+bottom: 24px;
+left: 0;
+width: 100%;
+display: flex;
+justify-content: center;
+gap: 28px;
+z-index: 20;
 }
 
 .bottom-links a {
-  color: #fff;
-  text-decoration: none;
-  font-family: Arial, sans-serif;
-  font-size: 0.8em;
-  letter-spacing: 5px;
-  font-weight: bold;
+color: #fff;
+text-decoration: none;
+font-size: 14px;
+letter-spacing: 1.5px;
+font-family: "Courier New", monospace;
+opacity: 0.75;
 }
 
 .bottom-links a:hover {
-  color: #ccc;
+color: #b00000;
+opacity: 1;
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
+@media (max-width: 768px) {
+
+body {
+overflow: hidden;
 }
 
-@media (max-width: 700px) {
-  body {
-    align-items: flex-start;
-  }
+.container {
+justify-content: flex-start;
+padding: 20vh 20px 90px;
+}
 
-  .container {
-    max-width: 100%;
-    padding: 70px 22px 60px;
-    line-height: 1.55;
-  }
+.logo {
+width: 245px;
+max-width: 82%;
+margin-bottom: 24px;
+}
 
-  .logo {
-    width: 60px;
-    margin-bottom: 18px;
-  }
+.company-text {
+font-size: 16px;
+line-height: 1.45;
+max-width: 92%;
+}
 
-  .brand-line {
-    font-size: 1.0em;
-    letter-spacing: 2.5px;
-  }
+.tagline {
+font-size: 21px;
+margin-top: 28px;
+}
 
-  p {
-    font-size: 0.9rem;
-    line-height: 1.55;
-    margin-bottom: 20px;
-  }
+.bottom-links {
+bottom: 20px;
+gap: 20px;
+}
 
-  .tagline {
-    letter-spacing: 1.5px;
-    font-size: 0.9em;
-    margin-top: 34px;
-    line-height: 1.45;
-  }
+.bottom-links a {
+font-size: 12px;
+letter-spacing: 1.2px;
+}
 
-  .bottom-links {
-    bottom: 18px;
-    gap: 52px;
-  }
+}
 
-  .bottom-links a {
-    font-size: 0.5em;
-    font-weight: normal;
-    letter-spacing: 3px;
-  }
+@media (max-width: 390px) {
+
+.container {
+padding-top: 18vh;
+}
+
+.logo {
+width: 220px;
+}
+
+.company-text {
+font-size: 15px;
+}
+
+.tagline {
+font-size: 19px;
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container intro">
 
-<img src="Cannon (9).png" class="logo">
+<img src="logo.png" alt="Cannon Kinetics" class="logo">
 
-<p>
-<span id="brand" class="brand-line"></span>
-</p>
-
-<div id="body" class="body-text">
-
-<p>
+<div class="company-text">
 We develop firearm components focused on modularity and integrated management of support gear and controls. Our designs are shaped by the demands of serious shooters, law enforcement, and military personnel in the field — where precision, control, and reliability are required.
-</p>
+</div>
 
-<p class="tagline">
-<span id="expect-line"></span><br>
-<span id="demand-line"></span>
-</p>
+<div class="tagline">DEMAND CONTROL</div>
 
 </div>
 
+<div class="bottom-links">
+<a href="index.html">HOME</a>
+<a href="contact.html">CONTACT US</a>
 </div>
-
-<div class="bottom-links" id="bottom-links">
-  <a href="index.html">HOME</a>
-  <a href="patience.html">CONTACT US</a>
-</div>
-
-<script>
-const brandText = "CANNON KINETICS";
-const expectText = "EXPECT PRECISION.";
-const demandText = "DEMAND CONTROL.";
-
-const brandTarget = document.getElementById("brand");
-const body = document.getElementById("body");
-const expectTarget = document.getElementById("expect-line");
-const demandTarget = document.getElementById("demand-line");
-const bottomLinks = document.getElementById("bottom-links");
-
-let brandIndex = 0;
-const speed = 65;
-
-function typeBrand() {
-  if (brandIndex <= brandText.length) {
-    brandTarget.innerHTML = brandText.substring(0, brandIndex) + '<span class="cursor" id="brand-cursor">█</span>';
-    brandIndex++;
-    setTimeout(typeBrand, speed);
-  } else {
-    brandTarget.innerHTML = brandText + '<span class="cursor" id="brand-cursor">█</span>';
-
-    setTimeout(function() {
-      body.classList.add("show");
-    }, 1000);
-
-    setTimeout(startExpect, 8000);
-  }
-}
-
-function removeBrandCursor() {
-  const cursor = document.getElementById("brand-cursor");
-  if (cursor) cursor.remove();
-}
-
-function startExpect() {
-  removeBrandCursor();
-
-  let i = 0;
-
-  function type() {
-    if (i <= expectText.length) {
-      const current = expectText.substring(0, i).replace("EXPECT", '<span class="red">EXPECT</span>');
-      expectTarget.innerHTML = current + '<span class="cursor">█</span>';
-      i++;
-      setTimeout(type, speed);
-    } else {
-      expectTarget.innerHTML = expectText.replace("EXPECT", '<span class="red">EXPECT</span>');
-      setTimeout(startDemand, 250);
-    }
-  }
-
-  type();
-}
-
-function startDemand() {
-  let i = 0;
-
-  function type() {
-    if (i <= demandText.length) {
-      const current = demandText.substring(0, i).replace("DEMAND", '<span class="red">DEMAND</span>');
-      demandTarget.innerHTML = current + '<span class="cursor">█</span>';
-      i++;
-      setTimeout(type, speed);
-    } else {
-      demandTarget.innerHTML = demandText.replace("DEMAND", '<span class="red">DEMAND</span>') + '<span class="cursor">█</span>';
-
-      setTimeout(() => {
-        bottomLinks.classList.add("show");
-      }, 1000);
-    }
-  }
-
-  type();
-}
-
-window.onload = typeBrand;
-</script>
 
 </body>
 </html>
