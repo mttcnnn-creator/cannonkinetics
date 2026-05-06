@@ -17,6 +17,7 @@ min-height: 100vh;
 text-align: center;
 padding: 20px;
 box-sizing: border-box;
+overflow-x: hidden;
 }
 
 .container {
@@ -24,7 +25,7 @@ max-width: 600px;
 width: 100%;
 }
 
-/* LOGO (75% of index size) */
+/* LOGO */
 .logo {
 width: 225px;
 max-width: 75%;
@@ -32,8 +33,9 @@ margin-bottom: 25px;
 filter: invert(1) brightness(2);
 }
 
+/* DESKTOP TITLE REDUCED ~25% */
 h1 {
-font-size: 2.4em;
+font-size: 1.8em;
 letter-spacing: 4px;
 margin-bottom: 20px;
 color: #ff0000;
@@ -42,6 +44,7 @@ transform: scale(2.4);
 animation: stampIn 0.28s cubic-bezier(.2, 1.4, .4, 1) forwards;
 }
 
+/* EMAIL */
 .email-link {
 font-size: 1.3em;
 letter-spacing: 2px;
@@ -61,6 +64,39 @@ color: #ff0000;
 color: #ff0000;
 font-weight: bold;
 animation: blink 0.8s steps(1) infinite;
+}
+
+/* BOTTOM NAV LINKS */
+.bottom-links {
+position: fixed;
+bottom: 25px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 95px;
+opacity: 0;
+transition: opacity 0.8s ease;
+z-index: 100;
+white-space: nowrap;
+}
+
+.bottom-links.show {
+opacity: 1;
+}
+
+.bottom-links a {
+color: #fff;
+text-decoration: none;
+font-family: Arial, sans-serif;
+font-size: 0.8em;
+letter-spacing: 5px;
+font-weight: bold;
+}
+
+.bottom-links a:hover {
+color: #ccc;
 }
 
 @keyframes stampIn {
@@ -88,11 +124,14 @@ opacity: 0;
 
 /* MOBILE */
 @media (max-width: 700px) {
+
+/* TITLE REDUCED ~50% */
 h1 {
-font-size: 1.9em;
+font-size: 0.95em;
 letter-spacing: 2px;
 }
 
+/* EMAIL */
 .email-link {
 font-size: 1.05em;
 letter-spacing: 1px;
@@ -100,6 +139,18 @@ letter-spacing: 1px;
 
 .logo {
 width: 160px;
+}
+
+/* MATCH INDEX/COMPANY MOBILE LINK SETTINGS */
+.bottom-links {
+bottom: 18px;
+gap: 52px;
+}
+
+.bottom-links a {
+font-size: 0.5em;
+font-weight: normal;
+letter-spacing: 3px;
 }
 }
 </style>
@@ -117,12 +168,19 @@ width: 160px;
 
 </div>
 
+<!-- NEW NAVIGATION -->
+<div class="bottom-links" id="bottom-links">
+<a href="index.html">HOME</a>
+<a href="company.html">COMPANY INFO</a>
+</div>
+
 <script>
 const emailText = "control@cannonkinetics.com";
 const emailLink = document.getElementById("email-link");
+const bottomLinks = document.getElementById("bottom-links");
+
 let emailIndex = 0;
 
-// keep your speed (or adjust if needed)
 const emailSpeed = 75;
 
 function typeEmail() {
@@ -132,6 +190,10 @@ emailIndex++;
 setTimeout(typeEmail, emailSpeed);
 } else {
 emailLink.innerHTML = emailText + '<span class="cursor">█</span>';
+
+setTimeout(() => {
+bottomLinks.classList.add("show");
+}, 1000);
 }
 }
 
