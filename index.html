@@ -79,15 +79,16 @@ font-weight: bold;
 animation: blink 0.8s steps(1) infinite;
 }
 
+/* CONTACT BUTTON REDUCED ~25% DESKTOP */
 .button {
 display: inline-block;
-margin-top: 50px;
-padding: 16px 55px;
+margin-top: 42px;
+padding: 12px 42px;
 border: 2px solid #fff;
 text-decoration: none;
 color: #fff;
-font-size: 1.2em;
-letter-spacing: 5px;
+font-size: 0.95em;
+letter-spacing: 4px;
 font-weight: bold;
 opacity: 0;
 transition: opacity 0.8s ease;
@@ -99,6 +100,7 @@ opacity: 1;
 pointer-events: auto;
 }
 
+/* DESKTOP COMPANY INFO */
 .company-link {
 position: fixed;
 bottom: 25px;
@@ -129,6 +131,7 @@ color: #ff0000;
 }
 
 @media (max-width: 700px) {
+
 h1 {
 font-size: 1.5em;
 letter-spacing: 3px;
@@ -146,13 +149,20 @@ letter-spacing: 1px;
 width: 158px;
 }
 
+/* CONTACT BUTTON REDUCED ~50% MOBILE */
 .button {
-font-size: 0.95em;
-padding: 12px 28px;
+font-size: 0.6em;
+padding: 8px 18px;
+letter-spacing: 2px;
+margin-top: 32px;
 }
 
+/* COMPANY INFO REDUCED ~50% MOBILE + REMOVE BOLD */
 .company-link {
-font-size: 1em;
+font-size: 0.5em;
+font-weight: normal;
+letter-spacing: 3px;
+bottom: 18px;
 }
 }
 </style>
