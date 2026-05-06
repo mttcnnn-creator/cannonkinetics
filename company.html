@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
 <title>Cannon Kinetics</title>
@@ -34,6 +34,7 @@ padding: 40px 20px 80px;
 box-sizing: border-box;
 position: relative;
 z-index: 10;
+overflow: hidden;
 }
 
 .logo {
@@ -43,126 +44,130 @@ margin-bottom: 30px;
 filter: invert(1) brightness(2);
 }
 
-.company-text {
-max-width: 780px;
-font-size: 20px;
-line-height: 1.55;
-letter-spacing: 0.5px;
-opacity: 0;
-animation: fadeInText 1.5s ease forwards;
-animation-delay: 1.2s;
-}
-
-@keyframes fadeInText {
-to { opacity: 1; }
-}
-
-.tagline {
-font-family: "Courier New", monospace;
-font-size: 26px;
-letter-spacing: 2px;
-margin-top: 34px;
-color: #fff;
+h1 {
+margin: 0;
+font-size: 2.85em;
+letter-spacing: 12px;
+font-weight: 800;
 white-space: nowrap;
+max-width: 100%;
 overflow: hidden;
-border-right: 3px solid #b00000;
-width: 0;
-animation: typing 2.4s steps(14, end) forwards, blinkCursor 0.75s step-end infinite;
-animation-delay: 10s, 10s;
 }
 
-@keyframes typing {
-from { width: 0; }
-to { width: 14ch; }
+.tagline {
+margin-top: 25px;
+font-size: 1.4em;
+letter-spacing: 4px;
+color: #b8b8b8;
+font-family: "Courier New", Courier, monospace;
+min-height: 1.6em;
+font-weight: 700;
 }
 
-@keyframes blinkCursor {
-50% { border-color: transparent; }
+.red {
+color: #ff0000;
+transition: color 0.2s ease;
 }
 
-.bottom-links {
-position: fixed;
-bottom: 24px;
-left: 0;
-width: 100%;
-display: flex;
-justify-content: center;
-gap: 28px;
-z-index: 20;
+.red:hover {
+color: #ffffff;
 }
 
-.bottom-links a {
-color: #fff;
+.cursor {
+color: #ff0000;
+font-weight: bold;
+animation: blink 0.8s steps(1) infinite;
+}
+
+/* CONTACT BUTTON REDUCED ~25% DESKTOP */
+.button {
+display: inline-block;
+margin-top: 42px;
+padding: 12px 42px;
+border: 2px solid #fff;
 text-decoration: none;
-font-size: 14px;
-letter-spacing: 1.5px;
-font-family: "Courier New", monospace;
-opacity: 0.75;
+color: #fff;
+font-size: 0.95em;
+letter-spacing: 4px;
+font-weight: bold;
+opacity: 0;
+transition: opacity 0.8s ease;
+pointer-events: none;
 }
 
-.bottom-links a:hover {
-color: #b00000;
+.button.show {
 opacity: 1;
+pointer-events: auto;
 }
 
-@media (max-width: 768px) {
+/* DESKTOP COMPANY INFO */
+.company-link {
+position: fixed;
+bottom: 25px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 0.8em;
+letter-spacing: 5px;
+font-weight: bold;
+color: #cc0000;
+text-decoration: none;
+white-space: nowrap;
+z-index: 100;
+}
 
-body {
+.company-cursor {
+color: #ffffff;
+font-weight: bold;
+margin-left: 2px;
+animation: blink 0.9s steps(1) infinite;
+}
+
+.company-link:hover {
+color: #ff0000;
+}
+
+@keyframes blink {
+50% { opacity: 0; }
+}
+
+@media (max-width: 700px) {
+
+.container {
+transform: translateY(-10vh);
+}
+
+h1 {
+font-size: 1.5em;
+letter-spacing: 3px;
+white-space: nowrap;
+max-width: 100%;
 overflow: hidden;
 }
 
-.container {
-justify-content: flex-start;
-padding: 20vh 20px 90px;
+.tagline {
+font-size: 0.85em;
+letter-spacing: 1px;
 }
 
 .logo {
-width: 245px;
-max-width: 82%;
-margin-bottom: 24px;
+width: 158px;
 }
 
-.company-text {
-font-size: 16px;
-line-height: 1.45;
-max-width: 92%;
+/* CONTACT BUTTON REDUCED ~50% MOBILE */
+.button {
+font-size: 0.6em;
+padding: 8px 18px;
+letter-spacing: 2px;
+margin-top: 32px;
 }
 
-.tagline {
-font-size: 21px;
-margin-top: 28px;
+/* COMPANY INFO REDUCED ~50% MOBILE + REMOVE BOLD */
+.company-link {
+font-size: 0.5em;
+font-weight: normal;
+letter-spacing: 3px;
+bottom: 18px;
 }
-
-.bottom-links {
-bottom: 20px;
-gap: 20px;
-}
-
-.bottom-links a {
-font-size: 12px;
-letter-spacing: 1.2px;
-}
-
-}
-
-@media (max-width: 390px) {
-
-.container {
-padding-top: 18vh;
-}
-
-.logo {
-width: 220px;
-}
-
-.company-text {
-font-size: 15px;
-}
-
-.tagline {
-font-size: 19px;
-}
-
 }
 </style>
 </head>
@@ -171,20 +176,79 @@ font-size: 19px;
 
 <div class="container intro">
 
-<img src="logo.png" alt="Cannon Kinetics" class="logo">
+<img src="Cannon (9).png" class="logo">
 
-<div class="company-text">
-We develop firearm components focused on modularity and integrated management of support gear and controls. Our designs are shaped by the demands of serious shooters, law enforcement, and military personnel in the field — where precision, control, and reliability are required.
+<h1>CANNON KINETICS</h1>
+
+<div class="tagline" id="tagline"></div>
+
+<a href="patience.html" class="button" id="coming-soon-button">CONTACT US</a>
+
 </div>
 
-<div class="tagline">DEMAND CONTROL</div>
+<a href="company.html" class="company-link" id="company-link"></a>
 
-</div>
+<script>
+const taglinePartOne = "EXPECT Precision.";
+const taglinePartTwo = " DEMAND Control.";
+const companyText = "COMPANY INFO";
 
-<div class="bottom-links">
-<a href="index.html">HOME</a>
-<a href="contact.html">CONTACT US</a>
-</div>
+const tagline = document.getElementById("tagline");
+const companyLink = document.getElementById("company-link");
+const button = document.getElementById("coming-soon-button");
+
+let partOneIndex = 0;
+let partTwoIndex = 0;
+let companyIndex = 0;
+
+const typeSpeed = 49;
+const startDelay = 1500;
+const secondPartDelay = 250;
+
+function formatTagline(text) {
+return text
+.replace("EXPECT", '<span class="red">EXPECT</span>')
+.replace("DEMAND", '<span class="red">DEMAND</span>');
+}
+
+function typePartOne() {
+if (partOneIndex <= taglinePartOne.length) {
+const current = taglinePartOne.substring(0, partOneIndex);
+tagline.innerHTML = formatTagline(current) + '<span class="cursor">█</span>';
+partOneIndex++;
+setTimeout(typePartOne, typeSpeed);
+} else {
+tagline.innerHTML = formatTagline(taglinePartOne) + '<span class="cursor">█</span>';
+setTimeout(typePartTwo, secondPartDelay);
+}
+}
+
+function typePartTwo() {
+if (partTwoIndex <= taglinePartTwo.length) {
+const current = taglinePartOne + taglinePartTwo.substring(0, partTwoIndex);
+tagline.innerHTML = formatTagline(current) + '<span class="cursor">█</span>';
+partTwoIndex++;
+setTimeout(typePartTwo, typeSpeed);
+} else {
+tagline.innerHTML = formatTagline(taglinePartOne + taglinePartTwo);
+setTimeout(typeCompany, 400);
+}
+}
+
+function typeCompany() {
+if (companyIndex <= companyText.length) {
+const current = companyText.substring(0, companyIndex);
+companyLink.innerHTML = current + '<span class="company-cursor">█</span>';
+companyIndex++;
+setTimeout(typeCompany, typeSpeed);
+} else {
+companyLink.innerHTML = companyText + '<span class="company-cursor">█</span>';
+setTimeout(() => button.classList.add("show"), 1200);
+}
+}
+
+setTimeout(typePartOne, startDelay);
+</script>
 
 </body>
 </html>
